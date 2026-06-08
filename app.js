@@ -13,6 +13,144 @@ document.addEventListener("DOMContentLoaded", () => {
   let teachers = window.PVDB.getTeachers();
   let classes = window.PVDB.getClasses();
 
+  const TIERS_DATA = [
+    {
+      name: "Seedling",
+      amount: 1,
+      badge: "Grassroots",
+      desc: "PV Digital membership credentials, community newsletter & project updates.",
+      kit: "None",
+      digital: "PV Digital Membership Badge, monthly newsletter access.",
+      physical: "Community voting on general initiatives."
+    },
+    {
+      name: "Friend",
+      amount: 5,
+      badge: "Grassroots",
+      desc: "Unlock the member portal and private discussion forums.",
+      kit: "None",
+      digital: "Access to private Discord & Skool forums.",
+      physical: "Priority presale ticket access to PV physical ceremonies & classes."
+    },
+    {
+      name: "Advocate",
+      amount: 15,
+      badge: "Grassroots",
+      desc: "Receive digital resource packages and public wall acknowledgment.",
+      kit: "None",
+      digital: "Digital Contributor Wall listing & digital resource pack (holistic guides & printables).",
+      physical: "5% discount on physical events."
+    },
+    {
+      name: "Earth Guardian",
+      amount: 25,
+      badge: "Grassroots Contributor",
+      desc: "Immediate physical connection kit and digital wall listing.",
+      kit: "Nature Connection Kit: Native wildflower seed bombs & PV custom sticker set.",
+      digital: "Digital Contributor Wall listing & Discord/Skool forum access.",
+      physical: "5% discount on physical events."
+    },
+    {
+      name: "Rooted Member",
+      amount: 50,
+      badge: "Grassroots Contributor",
+      desc: "Immediate physical starter kit and local class discounts.",
+      kit: "PV Starter Kit: Custom organic canvas tote bag & custom PV botanical decals.",
+      digital: "Digital Contributor Wall listing & Discord/Skool forum access.",
+      physical: "10% discount on physical classes."
+    },
+    {
+      name: "Grounded Steward",
+      amount: 150,
+      badge: "Grassroots Contributor",
+      desc: "Immediate physical stewardship kit and community lunch rewards.",
+      kit: "PV Stewardship Kit: PV ceramic mug, custom organic herbal tea blend, canvas tote bag.",
+      digital: "Premium online portal guides & meditation audio downloads.",
+      physical: "10% discount on physical classes + 1 free ticket to a community lunch banquet."
+    },
+    {
+      name: "Regenerative Patron",
+      amount: 250,
+      badge: "Grassroots Contributor",
+      desc: "Support local food loops. Includes 1 month of organic vegetable boxes.",
+      kit: "PV Farm Basket: 1-Month Organic Seasonal Farm Box, custom PV ceramic mug, tea blend, canvas tote bag.",
+      digital: "Premium online portal guides & meditation audio downloads.",
+      physical: "10% discount on physical classes + 2 free tickets to community lunch banquets."
+    },
+    {
+      name: "Sacred Supporter",
+      amount: 500,
+      badge: "Sanctuary Contributor",
+      desc: "Receive a 3-month farm box subscription and organic custom t-shirt.",
+      kit: "PV Harvest Kit: 3-Month Organic Seasonal Farm Box subscription & PV logo organic cotton t-shirt + mug & tea.",
+      digital: "Full member portal privileges & priority class registrations.",
+      physical: "15% discount on physical classes + 1 free workshop ticket."
+    },
+    {
+      name: "Sanctuary Patron",
+      amount: 1000,
+      badge: "Sanctuary Contributor",
+      desc: "Permanent Living Donor Wall engraving and banquet dinner invitations.",
+      kit: "PV Patron Kit: Harvest Kit (3-Mo Farm Box + T-shirt) + limited-edition custom PV hoodie + mug & tea.",
+      digital: "Name engraved on the physical & digital Living Donor Wall.",
+      physical: "Lifetime 15% class discount + Invites to seasonal farm-to-table banquet dinners."
+    },
+    {
+      name: "Healing Circle Member",
+      amount: 3000,
+      badge: "Sanctuary Contributor",
+      desc: "VIP sacred ceremony access and custom olive wood journal.",
+      kit: "Sacred Spaces Kit: Custom PV hoodie, custom PV olive wood journal, aromatherapy essential oil set.",
+      digital: "Name engraved on the physical & digital Living Donor Wall.",
+      physical: "Lifetime 20% class discount + VIP invitation to sacred ceremonies & music events."
+    },
+    {
+      name: "Anchor Patron",
+      amount: 10000,
+      badge: "Aligned Supporter",
+      desc: "Lifetime VIP access, dedicational room plaque, and private dinner with founders.",
+      kit: "PV VIP Anchor Box: Custom engraved wood plaque, olive wood journal, custom hoodie, VIP kit.",
+      digital: "Name on Living Donor Wall & permanent classroom/room dedicational plaque rights.",
+      physical: "Lifetime VIP free access to all ceremonies + private farm-to-table dinner with founders + 20% room rental discount."
+    },
+    {
+      name: "Pillar Partner",
+      amount: 25000,
+      badge: "Stakeholder",
+      desc: "For commercial stakeholders. Kitchen hours, space revenue splits, and board options.",
+      kit: "None (Commercial agreement)",
+      digital: "Shared-space rental dividend tracking dashboard access.",
+      physical: "10 hours/month of commercial kitchen usage + 10% space revenue splits + Board Seat option."
+    },
+    {
+      name: "Keystone Partner",
+      amount: 50000,
+      badge: "Stakeholder",
+      desc: "Enhanced commercial space operations, 15% revenue splits.",
+      kit: "None (Commercial agreement)",
+      digital: "Shared-space rental dividend tracking dashboard access.",
+      physical: "20 hours/month of commercial kitchen usage + 15% space revenue splits + custom room dedicational plaque + Board Seat option."
+    },
+    {
+      name: "Visionary Partner",
+      amount: 100000,
+      badge: "Stakeholder",
+      desc: "Sanctuary naming rights, 20% space revenue splits, Advisory Board Seat.",
+      kit: "None (Commercial agreement)",
+      digital: "Full dividend dashboard & priority Joint Venture agreement terms.",
+      physical: "Naming rights for classroom/hall + 20% space revenue splits + Advisory Board Seat + custom JV terms."
+    },
+    {
+      name: "Sanctuary Trustee",
+      amount: 250000,
+      badge: "Trustee",
+      desc: "Ultimate sanctuary legacy naming rights, 25% revenue splits, and lifetime seat on the Board of Trustees.",
+      kit: "PV Legacy Chest: Cedar chest with all custom physical gear (hoodies, mugs, teas, journals) + a gold-plated key to the sanctuary.",
+      digital: "Full Trustee dividend dashboard & permanent naming rights acknowledgment on website header.",
+      physical: "Lifetime Board of Trustees Seat + 25% space revenue splits + Sanctuary assembly hall naming rights + unlimited VIP family access."
+    }
+  ];
+
   // Scroll Header Effect
   const header = document.getElementById("main-header");
   window.addEventListener("scroll", () => {
@@ -323,29 +461,127 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // -------------------------------------------------------------
-  // 4. Investment Tiers & Calculator Logic
+  // 4. Investment Tiers & Slider Explorer Logic
   // -------------------------------------------------------------
-  // Shortcut triggers in investment cards to open pledge modal with prefilled amounts
-  document.querySelectorAll(".calc-trigger-shortcut").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const amt = btn.dataset.amt;
-      const amountInput = document.getElementById("invest-amount");
-      if (amountInput) {
-        amountInput.value = amt;
-        window.updatePaymentTierVisuals(amt);
-      }
-      showModal(investModal);
-    });
-  });
+  // Render landing page Tiers Explorer details
+  function renderTiersExplorer(index) {
+    const tier = TIERS_DATA[index];
+    if (!tier) return;
 
-  // Centered Invest Button inside fundraiser area
+    // Badges & Labels
+    const badgeEl = document.getElementById("explorer-tier-badge");
+    const nameEl = document.getElementById("explorer-tier-name");
+    const amountEl = document.getElementById("explorer-tier-amount");
+    const descEl = document.getElementById("explorer-tier-description");
+
+    if (badgeEl) {
+      badgeEl.textContent = `${tier.badge} Tier`;
+      badgeEl.className = tier.amount >= 5000 ? "badge badge-yellow" : "badge badge-green";
+    }
+    if (nameEl) nameEl.textContent = tier.name;
+    if (amountEl) amountEl.textContent = `$${tier.amount.toLocaleString()}`;
+    if (descEl) descEl.textContent = tier.desc;
+
+    // Rewards
+    const rewardKitEl = document.getElementById("explorer-reward-kit");
+    const rewardDigitalEl = document.getElementById("explorer-reward-digital");
+    const rewardPhysicalEl = document.getElementById("explorer-reward-physical");
+
+    const cardKit = document.getElementById("reward-card-kit");
+
+    if (rewardKitEl) rewardKitEl.textContent = tier.kit;
+    if (rewardDigitalEl) rewardDigitalEl.textContent = tier.digital;
+    if (rewardPhysicalEl) rewardPhysicalEl.textContent = tier.physical;
+
+    // Hide or show immediate kit reward card if none exists
+    if (cardKit) {
+      if (tier.kit === "None") {
+        cardKit.style.display = "none";
+      } else {
+        cardKit.style.display = "flex";
+      }
+    }
+
+    // Set CTA contribute button action
+    const contributeBtn = document.getElementById("explorer-contribute-btn");
+    if (contributeBtn) {
+      contributeBtn.textContent = `💰 Contribute $${tier.amount.toLocaleString()}`;
+      contributeBtn.onclick = () => {
+        const amountInput = document.getElementById("invest-amount");
+        if (amountInput) {
+          amountInput.value = tier.amount;
+          window.updatePaymentTierVisuals(tier.amount);
+        }
+        showModal(investModal);
+      };
+    }
+  }
+
+  // Tiers Explorer range slider listener
+  const tiersSlider = document.getElementById("tiers-range-slider");
+  if (tiersSlider) {
+    tiersSlider.addEventListener("input", () => {
+      const index = parseInt(tiersSlider.value, 10);
+      renderTiersExplorer(index);
+      highlightTick(index);
+    });
+  }
+
+  // Snapping functions
+  window.snapSliderTo = function(index) {
+    const slider = document.getElementById("tiers-range-slider");
+    if (slider) {
+      slider.value = index;
+      renderTiersExplorer(index);
+      highlightTick(index);
+    }
+  };
+
+  function highlightTick(activeIndex) {
+    document.querySelectorAll(".tick-label").forEach((label, idx) => {
+      label.classList.remove("active-tick");
+      if (idx === activeIndex) {
+        label.classList.add("active-tick");
+      }
+    });
+  }
+
+  // Render modal sidebar tiers list dynamically
+  function renderModalTiersList() {
+    const container = document.getElementById("payment-tiers-modal-list");
+    if (!container) return;
+    container.innerHTML = "";
+
+    TIERS_DATA.forEach((t) => {
+      const isGold = t.amount >= 5000;
+      const badgeClass = isGold ? "badge-yellow" : "badge-green";
+      
+      const card = document.createElement("div");
+      card.className = "payment-tier-item-card";
+      card.id = `pay-tier-${t.name.toLowerCase().replace(/\s+/g, "-")}`;
+      card.onclick = () => {
+        window.selectPaymentTier(t.amount);
+      };
+
+      card.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="badge ${badgeClass}">${t.name} ($${t.amount.toLocaleString()})</span>
+          <span class="tier-select-circle"></span>
+        </div>
+        <p class="payment-tier-desc" style="font-size:0.8rem; margin-top:0.5rem; color:var(--text-grey);">${t.desc}</p>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  // Fundraiser Centered Invest/Contribute Button inside fundraiser card
   const fundraiserInvestBtn = document.getElementById("fundraiser-invest-btn");
   if (fundraiserInvestBtn) {
     fundraiserInvestBtn.addEventListener("click", () => {
       const amountInput = document.getElementById("invest-amount");
       if (amountInput) {
-        amountInput.value = 5000; // Default to Grove Tier
-        window.updatePaymentTierVisuals(5000);
+        amountInput.value = 250; // Default to Regenerative Patron ($250)
+        window.updatePaymentTierVisuals(250);
       }
       showModal(investModal);
     });
@@ -362,7 +598,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Global functions for split payment modal window
+  // Global functions for split payment modal window selector
   window.selectPaymentTier = function(amount) {
     const amountInput = document.getElementById("invest-amount");
     if (amountInput) {
@@ -375,68 +611,46 @@ document.addEventListener("DOMContentLoaded", () => {
     const amount = Number(amountVal) || 0;
     
     // Deactivate all cards in the modal sidebar
-    const cardIds = [
-      "pay-tier-seedling",
-      "pay-tier-sprout",
-      "pay-tier-harvest",
-      "pay-tier-grove",
-      "pay-tier-pillar",
-      "pay-tier-visionary"
-    ];
-    cardIds.forEach(id => {
+    TIERS_DATA.forEach(t => {
+      const id = `pay-tier-${t.name.toLowerCase().replace(/\s+/g, "-")}`;
       const el = document.getElementById(id);
       if (el) el.classList.remove("active-tier");
     });
 
-    let activeId = "";
-    let tierName = "None";
-    let isGoldTier = false;
-
-    if (amount >= 100 && amount < 500) {
-      activeId = "pay-tier-seedling";
-      tierName = "Seedling Tier";
-    } else if (amount >= 500 && amount < 1000) {
-      activeId = "pay-tier-sprout";
-      tierName = "Sprout Tier";
-    } else if (amount >= 1000 && amount < 5000) {
-      activeId = "pay-tier-harvest";
-      tierName = "Harvest Tier";
-    } else if (amount >= 5000 && amount < 25000) {
-      activeId = "pay-tier-grove";
-      tierName = "Grove Tier";
-      isGoldTier = true;
-    } else if (amount >= 25000 && amount < 100000) {
-      activeId = "pay-tier-pillar";
-      tierName = "Pillar Tier";
-      isGoldTier = true;
-    } else if (amount >= 100000) {
-      activeId = "pay-tier-visionary";
-      tierName = "Visionary Tier";
-      isGoldTier = true;
+    let selectedTier = null;
+    for (let i = TIERS_DATA.length - 1; i >= 0; i--) {
+      if (amount >= TIERS_DATA[i].amount) {
+        selectedTier = TIERS_DATA[i];
+        break;
+      }
     }
 
-    // Activate matching card in sidebar
-    if (activeId) {
-      const el = document.getElementById(activeId);
+    if (selectedTier) {
+      const id = `pay-tier-${selectedTier.name.toLowerCase().replace(/\s+/g, "-")}`;
+      const el = document.getElementById(id);
       if (el) el.classList.add("active-tier");
-    }
 
-    // Update alert badge dynamically
-    const alertBox = document.getElementById("active-tier-alert");
-    if (alertBox) {
-      if (tierName !== "None") {
+      // Auto-scroll inside the sidebar stack if needed
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+
+      const isGold = selectedTier.amount >= 5000;
+      const alertBox = document.getElementById("active-tier-alert");
+      if (alertBox) {
         alertBox.style.display = "flex";
-        alertBox.textContent = `🎉 Active Benefit: ${tierName}`;
-        if (isGoldTier) {
+        alertBox.textContent = `🎉 Active Benefit: ${selectedTier.name} Tier`;
+        if (isGold) {
           alertBox.style.backgroundColor = "var(--color-gold-soft)";
           alertBox.style.color = "var(--color-gold-dark)";
         } else {
           alertBox.style.backgroundColor = "var(--color-olive-soft)";
           alertBox.style.color = "var(--color-olive-dark)";
         }
-      } else {
-        alertBox.style.display = "none";
       }
+    } else {
+      const alertBox = document.getElementById("active-tier-alert");
+      if (alertBox) alertBox.style.display = "none";
     }
   };
 
@@ -556,12 +770,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const amount = Number(document.getElementById("invest-amount").value);
     const note = document.getElementById("invest-note").value;
 
-    let tier = "Seedling";
-    if (amount >= 100000) tier = "Visionary";
-    else if (amount >= 25000) tier = "Pillar";
-    else if (amount >= 5000) tier = "Grove";
-    else if (amount >= 1000) tier = "Harvest";
-    else if (amount >= 500) tier = "Sprout";
+    let selectedTier = TIERS_DATA[0]; // Fallback
+    for (let i = TIERS_DATA.length - 1; i >= 0; i--) {
+      if (amount >= TIERS_DATA[i].amount) {
+        selectedTier = TIERS_DATA[i];
+        break;
+      }
+    }
+    const tier = selectedTier.name;
 
     const newDonor = {
       id: "d_" + Date.now(),
@@ -869,19 +1085,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const chartContainer = document.getElementById("crm-svg-bar-chart-container");
     chartContainer.innerHTML = "";
 
-    // Aggregate raise per tier
+    // Aggregate raise per tier group
     const tierBuckets = {
-      Seedling: 0,
-      Sprout: 0,
-      Harvest: 0,
-      Grove: 0,
-      Pillar: 0,
-      Visionary: 0
+      "Grassroots": 0,    // $1 - $15
+      "Contributor": 0,   // $25 - $250
+      "Sanctuary": 0,     // $500 - $3,000
+      "Anchor": 0,        // $10,000
+      "Partner": 0        // $25,000+
     };
 
     donorData.forEach(d => {
-      if (tierBuckets.hasOwnProperty(d.tier)) {
-        tierBuckets[d.tier] += Number(d.amount);
+      const amt = Number(d.amount) || 0;
+      if (amt < 25) {
+        tierBuckets["Grassroots"] += amt;
+      } else if (amt < 500) {
+        tierBuckets["Contributor"] += amt;
+      } else if (amt < 10000) {
+        tierBuckets["Sanctuary"] += amt;
+      } else if (amt < 25000) {
+        tierBuckets["Anchor"] += amt;
+      } else {
+        tierBuckets["Partner"] += amt;
       }
     });
 
@@ -896,21 +1120,21 @@ document.addEventListener("DOMContentLoaded", () => {
       const val = values[index];
       // Normalize height to max 120px
       const barHeight = Math.round((val / maxVal) * 120);
-      const x = 30 + (index * 75);
+      const x = 35 + (index * 90); // Adjusted spacing for 5 categories
       const y = 150 - barHeight;
 
       // Gradients coloring: Olive for low, Gold for high values
-      const color = val > 20000 ? "var(--color-gold-dark)" : "var(--color-olive)";
+      const color = val > 50000 ? "var(--color-gold-dark)" : "var(--color-olive)";
 
       barsSvg += `
         <!-- Bar rect -->
-        <rect x="${x}" y="${y}" width="40" height="${barHeight}" rx="4" fill="${color}" opacity="0.85" style="transition: all 0.5s ease;"></rect>
+        <rect x="${x}" y="${y}" width="45" height="${barHeight}" rx="4" fill="${color}" opacity="0.85" style="transition: all 0.5s ease;"></rect>
         
         <!-- Text Value above bar -->
-        <text x="${x + 20}" y="${y - 8}" font-family="var(--font-heading)" font-size="9" fill="var(--color-olive-deep)" text-anchor="middle" font-weight="700">$${formatShortValue(val)}</text>
+        <text x="${x + 22.5}" y="${y - 8}" font-family="var(--font-heading)" font-size="9" fill="var(--color-olive-deep)" text-anchor="middle" font-weight="700">$${formatShortValue(val)}</text>
         
         <!-- Category Label -->
-        <text x="${x + 20}" y="170" font-family="var(--font-sub)" font-size="8" fill="var(--text-muted)" font-weight="700" text-anchor="middle" style="text-transform:uppercase;">${cat}</text>
+        <text x="${x + 22.5}" y="170" font-family="var(--font-sub)" font-size="8" fill="var(--text-muted)" font-weight="700" text-anchor="middle" style="text-transform:uppercase;">${cat}</text>
       `;
     });
 
@@ -938,6 +1162,11 @@ document.addEventListener("DOMContentLoaded", () => {
   updateRaiseProgress();
   renderClasses();
   syncCRMData();
+
+  // Initialize Tiers Explorer & Modal Sidebar
+  renderModalTiersList();
+  renderTiersExplorer(6); // Default snapshot is $250 Regenerative Patron
+  highlightTick(6);
 
   // -------------------------------------------------------------
   // Hero Carousel Control Logic

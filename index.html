@@ -401,51 +401,80 @@
         <p>Whether you are a local neighbor starting small or a major partner structuring an equity split, we align incentives for tangible returns and societal growth.</p>
       </div>
 
-      <!-- Quick Tiers Visualizer -->
-      <div class="grid-3" style="margin-bottom: 4rem;">
-        <div class="card" style="display:flex; flex-direction:column; justify-content:space-between; min-height:400px;">
-          <div>
-            <span class="badge badge-green" style="margin-bottom:1rem;">Micro-Investor</span>
-            <h3 style="font-size:1.75rem; margin-bottom:0.5rem; text-transform:uppercase;">$100 - $4,999</h3>
-            <p style="font-size:0.95rem; margin-bottom:1.5rem;">Support the localized grassroots movement. Receive immediate organic farm boxes and class tuition rewards.</p>
-          </div>
-          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.6rem; font-size:0.95rem; margin-bottom:2rem; color:var(--text-grey);">
-            <li>✓ Digital PV Membership & voting</li>
-            <li>✓ Monthly organic vegetable share box</li>
-            <li>✓ Class tuition discounts up to 15%</li>
-            <li>✓ Living Donor Wall listing</li>
-          </ul>
-          <button class="btn btn-outline calc-trigger-shortcut" data-amt="1000">Select Sprout/Harvest</button>
+      <!-- Tiers Explorer Container -->
+      <div class="card tiers-explorer-card" style="max-width: 1000px; margin: 0 auto 4rem auto; padding: 3rem;">
+        <div class="explorer-header" style="text-align:center; margin-bottom: 2.5rem;">
+          <span class="badge badge-green" style="margin-bottom:0.75rem;">Interactive Explorer</span>
+          <h3>Select contribution Level</h3>
+          <p style="font-size:0.95rem; color:var(--text-grey); margin-top:0.5rem;">Drag the slider or click a tier amount below to view online, physical and kit rewards.</p>
         </div>
-
-        <div class="card" style="display:flex; flex-direction:column; justify-content:space-between; min-height:400px; border-color:var(--color-gold-dark);">
-          <div>
-            <span class="badge badge-yellow" style="margin-bottom:1rem;">Anchor Supporter</span>
-            <h3 style="font-size:1.75rem; margin-bottom:0.5rem; text-transform:uppercase;">$5,000 - $24,999</h3>
-            <p style="font-size:0.95rem; margin-bottom:1.5rem;">Lock in substantial community access, private dinners, and long-term residency credits.</p>
+        
+        <!-- Slider Control -->
+        <div class="tiers-slider-wrapper" style="margin: 3rem 0;">
+          <input type="range" id="tiers-range-slider" min="0" max="14" value="6" step="1" style="width: 100%; height: 8px; border-radius: var(--radius-full); background: var(--bg-cream); outline: none; -webkit-appearance: none; cursor: pointer;">
+          
+          <!-- Tick Marks -->
+          <div class="slider-ticks-container" style="display: flex; justify-content: space-between; margin-top: 1rem; position: relative;">
+            <span class="tick-label" data-index="0" onclick="snapSliderTo(0)">$1</span>
+            <span class="tick-label" data-index="1" onclick="snapSliderTo(1)">$5</span>
+            <span class="tick-label" data-index="2" onclick="snapSliderTo(2)">$15</span>
+            <span class="tick-label" data-index="3" onclick="snapSliderTo(3)">$25</span>
+            <span class="tick-label" data-index="4" onclick="snapSliderTo(4)">$50</span>
+            <span class="tick-label" data-index="5" onclick="snapSliderTo(5)">$150</span>
+            <span class="tick-label" data-index="6" onclick="snapSliderTo(6)">$250</span>
+            <span class="tick-label" data-index="7" onclick="snapSliderTo(7)">$500</span>
+            <span class="tick-label" data-index="8" onclick="snapSliderTo(8)">$1k</span>
+            <span class="tick-label" data-index="9" onclick="snapSliderTo(9)">$3k</span>
+            <span class="tick-label" data-index="10" onclick="snapSliderTo(10)">$10k</span>
+            <span class="tick-label" data-index="11" onclick="snapSliderTo(11)">$25k</span>
+            <span class="tick-label" data-index="12" onclick="snapSliderTo(12)">$50k</span>
+            <span class="tick-label" data-index="13" onclick="snapSliderTo(13)">$100k</span>
+            <span class="tick-label" data-index="14" onclick="snapSliderTo(14)">$250k</span>
           </div>
-          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.6rem; font-size:0.95rem; margin-bottom:2rem; color:var(--text-grey);">
-            <li>✓ Private dinner with founders</li>
-            <li>✓ Guaranteed class enrollments</li>
-            <li>✓ 20% lifetime tuition discount</li>
-            <li>✓ Permanent room dedication rights</li>
-          </ul>
-          <button class="btn btn-primary calc-trigger-shortcut" data-amt="5000" style="color:var(--bg-paper);">Select Grove</button>
         </div>
-
-        <div class="card" style="display:flex; flex-direction:column; justify-content:space-between; min-height:400px;">
-          <div>
-            <span class="badge badge-green" style="margin-bottom:1rem;">Pillar Partner</span>
-            <h3 style="font-size:1.75rem; margin-bottom:0.5rem; text-transform:uppercase;">$25,000+</h3>
-            <p style="font-size:0.95rem; margin-bottom:1.5rem;">For large accredited investors. Structured commercial revenue shares, culinary space usage allocations, and advisory seats.</p>
+        
+        <!-- Selected Tier Reward Display Grid -->
+        <div class="tier-details-display-grid" style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: start; border-top: 1px solid var(--border-color); padding-top: 2.5rem;">
+          <!-- Left Column: Tier Info & CTA -->
+          <div class="tier-info-card-left" style="background: var(--bg-linen); padding: 2rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 1.5rem;">
+            <div>
+              <span class="badge badge-green" id="explorer-tier-badge">Grassroots Contributor</span>
+              <h4 id="explorer-tier-name" style="font-size:1.8rem; text-transform:uppercase; margin-top:0.75rem;">Regenerative Patron</h4>
+              <div style="font-size:2.5rem; font-family:var(--font-heading); font-weight:900; color:var(--color-olive-deep); margin-top:0.5rem;" id="explorer-tier-amount">$250</div>
+            </div>
+            <p id="explorer-tier-description" style="font-size:0.9rem; line-height:1.5; color:var(--text-grey);">Support regional food security and permaculture training. Includes our monthly seasonal organic farm share box.</p>
+            <button class="btn btn-primary" id="explorer-contribute-btn" style="width: 100%; text-transform:uppercase;">💰 Contribute $250</button>
           </div>
-          <ul style="list-style:none; display:flex; flex-direction:column; gap:0.6rem; font-size:0.95rem; margin-bottom:2rem; color:var(--text-grey);">
-            <li>✓ 70/30 program tuition revenue split</li>
-            <li>✓ Commercial kitchen operational hours</li>
-            <li>✓ Core Board Seat option</li>
-            <li>✓ Shared space-rental dividends</li>
-          </ul>
-          <button class="btn btn-outline calc-trigger-shortcut" data-amt="100000">Explore Splits</button>
+          
+          <!-- Right Column: Rewards Details split by categories -->
+          <div class="tier-rewards-lists-right" style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <!-- Immediate Kit Reward Card -->
+            <div class="reward-category-card" id="reward-card-kit" style="background: var(--bg-paper); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem 1.5rem; display: flex; align-items: start; gap: 1.25rem;">
+              <div style="font-size: 2rem; background: var(--color-gold-soft); color: var(--color-gold-dark); width: 50px; height: 50px; border-radius: 12px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">🎁</div>
+              <div>
+                <h5 style="font-family:var(--font-sub); font-size:0.95rem; font-weight:800; text-transform:uppercase; color:var(--color-gold-dark);">Immediate Tangible Reward</h5>
+                <p id="explorer-reward-kit" style="font-size:0.9rem; margin-top:0.25rem; color:var(--text-grey);">PV Farm Basket: 1-Month Organic Seasonal Farm Box, custom PV Ceramic Mug, custom Organic Herbal Tea Blend, PV Tote Bag.</p>
+              </div>
+            </div>
+            
+            <!-- Online Access Card -->
+            <div class="reward-category-card" id="reward-card-digital" style="background: var(--bg-paper); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem 1.5rem; display: flex; align-items: start; gap: 1.25rem;">
+              <div style="font-size: 2rem; background: var(--color-olive-soft); color: var(--color-olive-dark); width: 50px; height: 50px; border-radius: 12px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">🌐</div>
+              <div>
+                <h5 style="font-family:var(--font-sub); font-size:0.95rem; font-weight:800; text-transform:uppercase; color:var(--color-olive-dark);">Online / Digital Access</h5>
+                <p id="explorer-reward-digital" style="font-size:0.9rem; margin-top:0.25rem; color:var(--text-grey);">Digital Contributor Wall listing & Private Discord / Skool forum access.</p>
+              </div>
+            </div>
+            
+            <!-- Sanctuary Perks Card -->
+            <div class="reward-category-card" id="reward-card-physical" style="background: var(--bg-paper); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem 1.5rem; display: flex; align-items: start; gap: 1.25rem;">
+              <div style="font-size: 2rem; background: #ebf3e7; color: var(--color-olive-deep); width: 50px; height: 50px; border-radius: 12px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">🏛️</div>
+              <div>
+                <h5 style="font-family:var(--font-sub); font-size:0.95rem; font-weight:800; text-transform:uppercase; color:var(--color-olive-deep);">Physical Sanctuary Perks</h5>
+                <p id="explorer-reward-physical" style="font-size:0.9rem; margin-top:0.25rem; color:var(--text-grey);">10% discount on physical classes + 2 free tickets to community farm-to-table lunch banquets.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -618,55 +647,8 @@
           <p style="font-size: 0.9rem; color: var(--text-grey); margin-top: 0.5rem;">Aligning incentives for tangible community returns and regional resilience. Select your pledge tier:</p>
         </div>
 
-        <div class="payment-tiers-stack" style="display: flex; flex-direction: column; gap: 1.1rem;">
-          <!-- Seedling Card -->
-          <div class="payment-tier-item-card" id="pay-tier-seedling" onclick="selectPaymentTier(100)">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span class="badge badge-green">Seedling ($100 - $499)</span>
-              <span class="tier-select-circle"></span>
-            </div>
-            <p class="payment-tier-desc" style="font-size:0.8rem; margin-top:0.5rem; color:var(--text-grey);">PV membership credentials, community newsletter & online forum access.</p>
-          </div>
-          <!-- Sprout Card -->
-          <div class="payment-tier-item-card" id="pay-tier-sprout" onclick="selectPaymentTier(500)">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span class="badge badge-green">Sprout ($500 - $999)</span>
-              <span class="tier-select-circle"></span>
-            </div>
-            <p class="payment-tier-desc" style="font-size:0.8rem; margin-top:0.5rem; color:var(--text-grey);">PV canvas tote, Priority local farm-share seasonal vegetable box & 10% class discount.</p>
-          </div>
-          <!-- Harvest Card -->
-          <div class="payment-tier-item-card" id="pay-tier-harvest" onclick="selectPaymentTier(1000)">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span class="badge badge-green">Harvest ($1,000 - $4,999)</span>
-              <span class="tier-select-circle"></span>
-            </div>
-            <p class="payment-tier-desc" style="font-size:0.8rem; margin-top:0.5rem; color:var(--text-grey);">Name engraved on the Living Donor Wall, seasonal banquet & 15% class discount.</p>
-          </div>
-          <!-- Grove Card -->
-          <div class="payment-tier-item-card" id="pay-tier-grove" onclick="selectPaymentTier(5000)">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span class="badge badge-yellow">Grove ($5,000 - $24,999)</span>
-              <span class="tier-select-circle"></span>
-            </div>
-            <p class="payment-tier-desc" style="font-size:0.8rem; margin-top:0.5rem; color:var(--text-grey);">Private dinner with Campton & Chef Steve, lifetime VIP, 20% room rental discount.</p>
-          </div>
-          <!-- Pillar Card -->
-          <div class="payment-tier-item-card" id="pay-tier-pillar" onclick="selectPaymentTier(25000)">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span class="badge badge-yellow">Pillar ($25,000 - $99,999)</span>
-              <span class="tier-select-circle"></span>
-            </div>
-            <p class="payment-tier-desc" style="font-size:0.8rem; margin-top:0.5rem; color:var(--text-grey);">Dedicational room plaque, commercial kitchen hours (10/mo) & 10% space revenue splits.</p>
-          </div>
-          <!-- Visionary Card -->
-          <div class="payment-tier-item-card" id="pay-tier-visionary" onclick="selectPaymentTier(100000)">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <span class="badge badge-yellow">Visionary ($100,000+)</span>
-              <span class="tier-select-circle"></span>
-            </div>
-            <p class="payment-tier-desc" style="font-size:0.8rem; margin-top:0.5rem; color:var(--text-grey);">Hall naming rights, Board Seat option, 20% space revenue splits & custom JV terms.</p>
-          </div>
+        <div class="payment-tiers-stack" style="display: flex; flex-direction: column; gap: 1.1rem;" id="payment-tiers-modal-list">
+          <!-- Populated dynamically via JS -->
         </div>
       </div>
 
@@ -686,7 +668,7 @@
           </div>
           <div class="form-group-wrapper">
             <label for="invest-amount">Investment Amount ($)</label>
-            <input type="number" id="invest-amount" required min="100" placeholder="5000" style="padding: 0.75rem 1rem;" oninput="updatePaymentTierVisuals(this.value)">
+            <input type="number" id="invest-amount" required min="1" placeholder="5000" style="padding: 0.75rem 1rem;" oninput="updatePaymentTierVisuals(this.value)">
           </div>
 
           <!-- Card Details Input (Simulated) -->
