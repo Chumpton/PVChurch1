@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       title: "Core Purchase Title Transfer",
       desc: "Securing ownership of the 15,000 sq ft historic church landmark. Securing the physical sanctuary and starting ground renovations.",
-      image: "2100-5th-Ave-Oakland-CA-Primary-Photo-1-Large.jpg",
+      image: "2100-5th-Ave-Oakland-CA-Building-Photo-3-Large.jpg",
       goalLabel: "STAGE 2 GOAL",
       goalValue: "$1.2M",
       icon: "🏛️",
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       title: "Culinary Renovations & Gardens",
       desc: "Transforming 400 sq ft of prep space into a certified commercial kitchen and creating healing gardens, vertical food systems, and youth nature spaces.",
-      image: "2100-5th-Ave-Oakland-CA-Primary-Photo-1-Large.jpg",
+      image: "2100-5th-Ave-Oakland-CA-Building-Photo-25-LargeHighDefinition.jpg",
       goalLabel: "STAGE 3 GOAL",
       goalValue: "$1.8M",
       icon: "🍳",
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       title: "Full Sanctuary Operating Launch",
       desc: "Activating all 10 classrooms at full capacity, launching the digital Skool network online, and establishing weekly community farm-to-table banquet dinners.",
-      image: "2100-5th-Ave-Oakland-CA-Primary-Photo-1-Large.jpg",
+      image: "2100-5th-Ave-Oakland-CA-Building-Photo-4-LargeHighDefinition.jpg",
       goalLabel: "STAGE 4 GOAL",
       goalValue: "$2.5M",
       icon: "🌱",
@@ -216,6 +216,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (titleEl) titleEl.textContent = data.title;
     if (descEl) descEl.textContent = data.desc;
 
+    // Image Swap
+    const imageEl = document.getElementById("focus-section-image");
+    if (imageEl && data.image) {
+      imageEl.src = data.image;
+    }
+
     // Header Card
     const goalLabelEl = document.getElementById("focus-goal-label");
     const goalValEl = document.getElementById("focus-goal-value");
@@ -273,27 +279,32 @@ document.addEventListener("DOMContentLoaded", () => {
     property: {
       title: "2100 5th Ave: Adaptive Landmark Reuse",
       desc: "Located in Oakland's vibrant Ivy Hill neighborhood, this historical 15,000 sq ft church space is being transformed from a traditional religious site into a multi-dimensional platform for regional resilience.",
-      bullets: ["15,000 Sq Ft Total Space", "6 Multi-stall Restrooms", "Transit Oriented (I-580 / BART)", "Ivy Hill Corner Lot Location"]
+      bullets: ["15,000 Sq Ft Total Space", "6 Multi-stall Restrooms", "Transit Oriented (I-580 / BART)", "Ivy Hill Corner Lot Location"],
+      image: "2100-5th-Ave-Oakland-CA-Building-Photo-2-Large.jpg"
     },
     sanctuary: {
       title: "The PV Sanctuary",
       desc: "A large, double-height assembly hall designed for nature-themed gatherings, spiritual reflection, performance arts, and sound healing ceremonies. Moving beyond dogma, this space celebrates ecological connection.",
-      bullets: ["Acoustically Treated Hall", "Capacity for 300+ Attendees", "Nature-Inspired Altar & Art", "Flexible Seating Layout"]
+      bullets: ["Acoustically Treated Hall", "Capacity for 300+ Attendees", "Nature-Inspired Altar & Art", "Flexible Seating Layout"],
+      image: "2100-5th-Ave-Oakland-CA-Building-Photo-4-LargeHighDefinition.jpg"
     },
     kitchen: {
       title: "Commercial Prep Kitchen",
       desc: "A certified 400-square-foot kitchen that serves as an incubator for local culinary start-ups, a workspace for zero-waste food preparation, and the teaching lab for Chef Steve Constantine's classes.",
-      bullets: ["Commercial Hood & Ranges", "Prep Tables & Coolers", "Certified Health Permit Ready", "Incubator Operating Hours"]
+      bullets: ["Commercial Hood & Ranges", "Prep Tables & Coolers", "Certified Health Permit Ready", "Incubator Operating Hours"],
+      image: "2100-5th-Ave-Oakland-CA-Building-Photo-15-LargeHighDefinition.jpg"
     },
     social: {
       title: "Social & Culinary Hall",
       desc: "A 3,000+ square-foot open social hall linked to the commercial kitchen. It acts as our neighborhood community cafe, farm-to-table banquet hall, and distribution node for local urban agriculture networks.",
-      bullets: ["3,000+ Sq Ft Gathering Hall", "Banquet and Cafe Seating", "Community Fridge Location", "Weekly Farm-to-Table Meals"]
+      bullets: ["3,000+ Sq Ft Gathering Hall", "Banquet and Cafe Seating", "Community Fridge Location", "Weekly Farm-to-Table Meals"],
+      image: "2100-5th-Ave-Oakland-CA-Building-Photo-5-LargeHighDefinition.jpg"
     },
     gardens: {
       title: "Regenerative Urban Gardens",
       desc: "Activating the 0.38-acre exterior lot. Includes vertical gardening towers, compost facilities, rainwater harvesting beds, and honeybee boxes. A hands-on training ground for permaculture students.",
-      bullets: ["Permaculture Design Layout", "Vertical Cultivation Towers", "Organic Compost Hub", "Rainwater Capture Systems"]
+      bullets: ["Permaculture Design Layout", "Vertical Cultivation Towers", "Organic Compost Hub", "Rainwater Capture Systems"],
+      image: "2100-5th-Ave-Oakland-CA-Building-Photo-25-LargeHighDefinition.jpg"
     }
   };
 
@@ -308,6 +319,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (data) {
         document.getElementById("viewed-space-title").textContent = data.title;
         document.getElementById("viewed-space-desc").textContent = data.desc;
+
+        const spacePhoto = document.getElementById("active-space-photo");
+        if (spacePhoto && data.image) {
+          spacePhoto.src = data.image;
+        }
 
         const bulletContainer = document.getElementById("viewed-space-bullets");
         bulletContainer.innerHTML = "";
@@ -936,6 +952,81 @@ document.addEventListener("DOMContentLoaded", () => {
   updateRaiseProgress();
   renderClasses();
   syncCRMData();
+
+  // -------------------------------------------------------------
+  // Hero Carousel Control Logic
+  // -------------------------------------------------------------
+  const slides = document.querySelectorAll(".hero-carousel-slide");
+  const dots = document.querySelectorAll(".carousel-dot");
+  const prevBtn = document.querySelector(".carousel-arrow.prev");
+  const nextBtn = document.querySelector(".carousel-arrow.next");
+  
+  let currentSlide = 0;
+  let carouselInterval = null;
+
+  function showSlide(index) {
+    if (slides.length === 0) return;
+    slides.forEach((slide) => slide.classList.remove("active"));
+    dots.forEach((dot) => dot.classList.remove("active"));
+
+    currentSlide = (index + slides.length) % slides.length;
+    slides[currentSlide].classList.add("active");
+    if (dots[currentSlide]) {
+      dots[currentSlide].classList.add("active");
+    }
+  }
+
+  function nextSlide() {
+    showSlide(currentSlide + 1);
+  }
+
+  function prevSlide() {
+    showSlide(currentSlide - 1);
+  }
+
+  function startCarousel() {
+    stopCarousel();
+    carouselInterval = setInterval(nextSlide, 5000); // 5s Auto-rotation
+  }
+
+  function stopCarousel() {
+    if (carouselInterval) {
+      clearInterval(carouselInterval);
+    }
+  }
+
+  if (slides.length > 0) {
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        prevSlide();
+        startCarousel();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        nextSlide();
+        startCarousel();
+      });
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const slideIndex = parseInt(dot.dataset.slide, 10);
+        showSlide(slideIndex);
+        startCarousel();
+      });
+    });
+
+    startCarousel();
+
+    // Pause on hover
+    const carouselContainer = document.querySelector(".hero-carousel-container");
+    if (carouselContainer) {
+      carouselContainer.addEventListener("mouseenter", stopCarousel);
+      carouselContainer.addEventListener("mouseleave", startCarousel);
+    }
+  }
 
   // Schedule class propose teacher loader helper trigger
   document.getElementById("crm-schedule-class-btn").addEventListener("click", () => {

@@ -396,8 +396,9 @@ nav ul li a:hover {
   gap: 1.5rem;
 }
 
-/* Hero Image Showcase Styles */
-.hero-image-showcase {
+/* Hero Image Showcase Styles (Carousel) */
+.hero-carousel-container {
+  position: relative;
   max-width: 950px;
   margin: 3.5rem auto 0.5rem auto;
   border-radius: var(--radius-lg);
@@ -405,18 +406,105 @@ nav ul li a:hover {
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-md);
   background: var(--bg-paper);
+  aspect-ratio: 16 / 9; /* Premium widescreen ratio */
+}
+
+.hero-carousel-slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity var(--transition-slow) ease-in-out;
+  z-index: 1;
+}
+
+.hero-carousel-slide.active {
+  opacity: 1;
+  z-index: 2;
 }
 
 .hero-main-photo {
   width: 100%;
-  height: auto;
-  max-height: 480px;
+  height: 100%;
   object-fit: cover;
   display: block;
-  transition: var(--transition-normal);
+  transition: transform var(--transition-normal) ease;
 }
-.hero-image-showcase:hover .hero-main-photo {
+
+.hero-carousel-slide.active:hover .hero-main-photo {
   transform: scale(1.02);
+}
+
+/* Arrow controls */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(4, 6, 2, 0.4);
+  color: var(--bg-paper);
+  border: none;
+  font-size: 2.5rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all var(--transition-fast) ease;
+  backdrop-filter: blur(4px);
+}
+
+.carousel-arrow:hover {
+  background: var(--color-olive);
+  color: var(--bg-paper);
+  box-shadow: var(--shadow-md);
+}
+
+.carousel-arrow.prev {
+  left: 1.5rem;
+}
+
+.carousel-arrow.next {
+  right: 1.5rem;
+}
+
+/* Dots indicators */
+.carousel-dots {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.75rem;
+  z-index: 10;
+  background: rgba(4, 6, 2, 0.35);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(4px);
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all var(--transition-fast) ease;
+}
+
+.carousel-dot.active, .carousel-dot:hover {
+  background: var(--color-gold);
+  transform: scale(1.25);
 }
 
 /* Fundraising Progress Area */
@@ -710,6 +798,39 @@ nav ul li a:hover {
 
 .space-detail-viewer {
   min-height: 320px;
+}
+
+.space-detail-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.space-detail-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.space-photo-showcase {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  aspect-ratio: 4 / 3;
+  display: flex;
+}
+
+.space-showcase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-normal) ease;
+}
+
+.space-photo-showcase:hover .space-showcase-img {
+  transform: scale(1.03);
 }
 
 .space-detail-viewer h3 {
@@ -1444,7 +1565,7 @@ nav ul li a:hover {
   background: var(--bg-paper);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  overflow: hidden;
+  overflow-x: auto;
   margin-bottom: 2rem;
   box-shadow: var(--shadow-sm);
 }
@@ -1550,6 +1671,52 @@ nav ul li a:hover {
 }
 
 @media (max-width: 768px) {
+  .logo-text {
+    display: none;
+  }
+  .pillars-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .showcase-features-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .property-card-interactive {
+    order: 1;
+  }
+  .space-detail-viewer {
+    order: 2;
+  }
+  .space-detail-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .space-photo-showcase {
+    order: 1;
+  }
+  .space-detail-text {
+    order: 2;
+  }
+  .modal-card-container {
+    padding: 1.5rem !important;
+  }
+  .modal-overlay-backdrop {
+    padding: 1rem;
+  }
+  .hero-carousel-container {
+    aspect-ratio: 4 / 3;
+    margin: 2rem auto 0.5rem auto;
+  }
+  .carousel-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 1.8rem;
+  }
+  .carousel-arrow.prev { left: 0.75rem; }
+  .carousel-arrow.next { right: 0.75rem; }
+
   .container {
     padding: 0 1.25rem;
   }
@@ -1698,6 +1865,9 @@ nav ul li a:hover {
 }
 
 @media (max-width: 480px) {
+  .space-bullet-points {
+    grid-template-columns: 1fr;
+  }
   .hero-text-content h1 {
     font-size: 1.85rem;
   }
