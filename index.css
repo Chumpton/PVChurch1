@@ -1777,26 +1777,149 @@ nav ul li a:hover {
 
   /* Fundraiser Panel Responsive styling */
   .progress-panel {
-    padding: 1.5rem !important;
+    padding: 1.25rem !important;
   }
   .raised-amount-large {
-    font-size: 2.5rem;
+    font-size: 2.2rem !important;
+  }
+  .fundraiser-top-section {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 1.25rem !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .radial-progress-container {
+    width: 90px !important;
+    height: 90px !important;
+    margin: 0 !important;
+  }
+  .radial-progress-text .radial-percent {
+    font-size: 1.6rem !important;
+  }
+  .radial-progress-text .radial-label {
+    font-size: 0.6rem !important;
+    margin-top: 0.1rem !important;
+  }
+  .fundraiser-main-stats {
+    flex: 1 !important;
+    min-width: 180px !important;
+    gap: 0.5rem !important;
+    text-align: left !important;
+  }
+  .raised-value-title {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.15rem !important;
+  }
+  .raised-goal-subtext {
+    font-size: 0.65rem !important;
   }
   .sub-stats-grid {
-    grid-template-columns: 1fr; /* Stack stats visually */
-    gap: 0.75rem;
+    grid-template-columns: repeat(3, 1fr) !important;
+    width: 100% !important;
+    gap: 0.4rem !important;
   }
   .sub-stat-item {
     background: var(--bg-linen);
-    padding: 0.75rem 1rem;
+    padding: 0.4rem !important;
     border-radius: var(--radius-sm);
     border: 1px solid var(--border-color);
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 0.2rem !important;
+  }
+  .sub-stat-icon {
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 0.75rem !important;
+  }
+  .sub-stat-number {
+    font-size: 0.85rem !important;
+  }
+  .sub-stat-label {
+    font-size: 0.55rem !important;
   }
   .callout-card-leaf {
-    width: 100%;
+    width: 100% !important;
+    padding: 0.75rem 1rem !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+  }
+  .leaf-icon-wrapper {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 1rem !important;
+  }
+  .leaf-card-text {
+    font-size: 0.75rem !important;
+    margin: 0 !important;
   }
   .new-milestone-bar-container {
-    margin: 2rem 0.5rem 2.5rem 0.5rem;
+    margin: 2rem 35px 3rem 35px !important;
+    overflow: visible !important;
+  }
+  .new-milestone-line {
+    display: block !important;
+    height: 16px !important;
+    top: 10px !important;
+  }
+  .new-milestones-list {
+    display: block !important;
+    height: 70px !important;
+    position: relative !important;
+  }
+  .new-milestone-node {
+    position: absolute !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    width: 70px !important;
+    transform: translateX(-50%) !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    top: 0 !important;
+  }
+  
+  #stage-node-0 { left: 20% !important; }
+  #stage-node-1 { left: 48% !important; }
+  #stage-node-2 { left: 72% !important; }
+  #stage-node-3 { left: 100% !important; }
+
+  .node-status-marker {
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 0.65rem !important;
+    border-width: 2px !important;
+  }
+  .new-milestone-node.active .node-status-marker::before {
+    width: 6px !important;
+    height: 6px !important;
+  }
+  .node-stage-icon {
+    display: none !important;
+  }
+  .node-stage-meta {
+    margin-top: 0.5rem !important;
+    align-items: center !important;
+    max-width: 70px !important;
+  }
+  .node-stage-number {
+    display: none !important;
+  }
+  .node-stage-title {
+    font-size: 0.6rem !important;
+    text-align: center !important;
+    line-height: 1.15 !important;
+    white-space: normal !important;
+  }
+  .node-stage-val {
+    font-size: 0.65rem !important;
+    margin-top: 0.1rem !important;
+  }
+  .node-status-text {
+    display: none !important;
   }
 
   /* Grid Layouts Overrides */
@@ -1818,51 +1941,102 @@ nav ul li a:hover {
   .newsletter-form-wrapper {
     flex-direction: column;
   }
-  
-  /* Milestones Timeline mobile stacking view */
-  .new-milestones-list {
-    display: flex !important;
-    flex-direction: column;
-    gap: 2rem;
-    align-items: flex-start;
-    height: auto !important;
-  }
-  .new-milestone-node {
-    position: relative !important;
-    left: auto !important;
-    transform: none !important;
-    width: 100% !important;
-    flex-direction: row;
-    align-items: center;
-    text-align: left;
-    gap: 1.25rem;
-  }
-  .new-milestone-line {
-    display: none;
-  }
-  .node-stage-icon {
-    margin-top: 0;
-  }
-  .node-stage-meta {
-    margin-top: 0;
-    align-items: flex-start;
-  }
 
   /* Focus Details area margins */
   .focus-image-box {
-    height: 200px;
+    display: none !important;
   }
   .focus-title {
-    font-size: 1.35rem;
+    font-size: 1.25rem !important;
   }
   .focus-description {
-    font-size: 0.9rem;
-    margin-bottom: 1.25rem;
+    font-size: 0.85rem !important;
+    margin-bottom: 1rem !important;
+  }
+  .focus-stage-goal-card {
+    border-radius: var(--radius-md) !important;
+  }
+  .stage-goal-header {
+    padding: 0.75rem 1rem !important;
+    gap: 0.75rem !important;
+  }
+  .goal-header-icon {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 1.1rem !important;
+  }
+  .goal-header-value {
+    font-size: 1.1rem !important;
+  }
+  .stage-goal-body {
+    padding: 1rem !important;
+  }
+  .what-built-list {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 0.4rem !important;
+  }
+  .what-built-list li {
+    font-size: 0.72rem !important;
+    background: var(--bg-linen);
+    padding: 0.25rem 0.5rem !important;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+  }
+  .stage-goal-footer {
+    padding: 0.75rem 1rem !important;
+  }
+
+  /* Tiers explorer card padding and responsive adjustments */
+  .tiers-explorer-card {
+    padding: 1.25rem !important;
+  }
+  .explorer-header {
+    margin-bottom: 1.5rem !important;
+  }
+  .explorer-header h3 {
+    font-size: 1.35rem !important;
+  }
+  .tiers-slider-wrapper {
+    margin: 1.5rem 0 !important;
+  }
+  .tier-info-card-left {
+    padding: 1.25rem !important;
+    gap: 1rem !important;
+  }
+  #explorer-tier-name {
+    font-size: 1.3rem !important;
+  }
+  #explorer-tier-amount {
+    font-size: 2rem !important;
+  }
+  #explorer-tier-description {
+    font-size: 0.85rem !important;
+  }
+  .tier-rewards-lists-right {
+    gap: 1rem !important;
+  }
+  .reward-category-card {
+    padding: 0.85rem 1rem !important;
+    gap: 0.75rem !important;
+  }
+  .reward-icon-box {
+    font-size: 1.25rem !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 8px !important;
+  }
+  .reward-category-card h5 {
+    font-size: 0.8rem !important;
+  }
+  .reward-category-card p {
+    font-size: 0.8rem !important;
+    margin-top: 0.15rem !important;
   }
 
   /* Modal split columns and paddings */
   .payment-benefits-sidebar, .payment-form-side {
-    padding: 1.5rem !important;
+    padding: 1.25rem !important;
   }
   .payment-window-container {
     max-height: 95vh !important;
@@ -2514,11 +2688,35 @@ nav ul li a:hover {
 @media (max-width: 900px) {
   .payment-window-container {
     flex-direction: column !important;
-    max-height: 90vh !important;
+    max-height: none !important;
+    overflow: visible !important;
   }
-  .payment-benefits-sidebar, .payment-form-side {
+  .payment-benefits-sidebar {
+    max-height: 220px !important;
+    overflow-y: auto !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    padding: 1.5rem !important;
+    flex-shrink: 0 !important;
+  }
+  .payment-form-side {
     max-height: none !important;
     overflow-y: visible !important;
+    padding: 1.5rem !important;
+    flex-shrink: 0 !important;
+  }
+  #modal-invest-close {
+    top: 0.5rem !important;
+    right: 0.75rem !important;
+    background: var(--bg-paper) !important;
+    border-radius: 50% !important;
+    width: 32px !important;
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: var(--shadow-sm) !important;
+    font-size: 1.5rem !important;
   }
 }
 
