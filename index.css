@@ -1529,6 +1529,15 @@ nav ul li a:hover {
   .crm-visuals-row {
     grid-template-columns: 1fr;
   }
+  .fundraiser-top-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2rem;
+  }
+  .focus-details-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1556,5 +1565,641 @@ nav ul li a:hover {
   }
   .newsletter-form-wrapper {
     flex-direction: column;
+  }
+  .new-milestones-list {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  .new-milestone-node {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 1.25rem;
+  }
+  .new-milestone-line {
+    display: none;
+  }
+  .node-stage-icon {
+    margin-top: 0;
+  }
+  .node-stage-meta {
+    margin-top: 0;
+    align-items: flex-start;
+  }
+}
+
+/* ==========================================================================
+   New Premium Fundraiser Dashboard (Mockup Redesign)
+   ========================================================================== */
+
+.fundraiser-top-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+
+/* Radial Progress Dial */
+.radial-progress-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radial-progress-svg {
+  transform: rotate(-90deg);
+}
+
+.radial-progress-fill {
+  transition: stroke-dashoffset 1s ease-out;
+}
+
+.radial-progress-text {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.radial-progress-text .radial-percent {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--color-olive-deep);
+  line-height: 1;
+}
+
+.radial-progress-text .radial-label {
+  font-family: var(--font-sub);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+}
+
+/* Middle Column Stats */
+.fundraiser-main-stats {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.raised-value-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.raised-amount-large {
+  font-family: var(--font-heading);
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: var(--color-olive-deep);
+  line-height: 1;
+}
+
+.raised-goal-subtext {
+  font-family: var(--font-sub);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.raised-goal-subtext span {
+  color: var(--color-olive-deep);
+}
+
+/* Thick progress bar inside dashboard */
+.horizontal-progress-bar-wrapper {
+  width: 100%;
+}
+
+.horizontal-progress-track {
+  height: 16px;
+  background: hsla(88, 56%, 20%, 0.06);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.horizontal-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-olive), var(--color-gold));
+  border-radius: var(--radius-full);
+  transition: width 1.2s cubic-bezier(0.1, 0.8, 0.25, 1);
+  box-shadow: 0 2px 5px rgba(90, 136, 38, 0.15);
+}
+
+/* Sub-stats Row underneath bar */
+.sub-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.sub-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.sub-stat-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f1f5ee;
+  color: var(--color-olive);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.sub-stat-icon.red-icon {
+  background: #fdf2f2;
+  color: #e02424;
+}
+
+.sub-stat-icon.gold-icon {
+  background: #fbf5df;
+  color: var(--color-gold-dark);
+}
+
+.sub-stat-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-stat-number {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--color-olive-deep);
+  line-height: 1.2;
+}
+
+.sub-stat-label {
+  font-family: var(--font-sub);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+
+/* Leaf Card Callout (Right Side) */
+.callout-card-leaf {
+  width: 240px;
+  background: var(--bg-linen);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+
+.leaf-icon-wrapper {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ebf3e7;
+  color: var(--color-olive-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.leaf-card-text {
+  font-size: 0.85rem;
+  color: var(--color-olive-deep);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.fundraiser-divider {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 2rem 0;
+}
+
+/* Milestone Container (Middle Section) */
+.new-milestone-bar-container {
+  position: relative;
+  margin: 3rem 1.5rem 4rem 1.5rem;
+}
+
+.new-milestone-line {
+  position: absolute;
+  top: 15px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 4px;
+  background: #e6e8e2;
+  transform: translateY(-50%);
+  z-index: 1;
+  border-radius: var(--radius-full);
+}
+
+.new-milestone-line-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--color-olive);
+  border-radius: var(--radius-full);
+  transition: width 1.2s cubic-bezier(0.1, 0.8, 0.25, 1);
+}
+
+.new-milestones-list {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.new-milestone-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 25%;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.node-status-marker {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--bg-paper);
+  border: 3px solid var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: var(--text-muted);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-sm);
+  background-color: var(--bg-paper);
+  z-index: 10;
+}
+
+.new-milestone-node.completed .node-status-marker {
+  background-color: var(--color-olive);
+  border-color: var(--color-olive);
+  color: var(--bg-paper);
+}
+
+.new-milestone-node.active .node-status-marker {
+  background-color: var(--bg-paper);
+  border-color: var(--color-gold);
+  color: var(--color-gold-dark);
+  box-shadow: 0 0 10px rgba(254, 209, 46, 0.4);
+  transform: scale(1.1);
+  position: relative;
+}
+
+.new-milestone-node.active .node-status-marker::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-gold);
+  border-radius: 50%;
+  position: absolute;
+}
+
+.node-stage-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--bg-linen);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.new-milestone-node:hover .node-stage-icon,
+.new-milestone-node.active .node-stage-icon,
+.new-milestone-node.active-focus .node-stage-icon {
+  transform: translateY(-2px);
+  border-color: var(--color-gold-light);
+  background: var(--bg-paper);
+  box-shadow: 0 0 12px var(--color-gold-soft);
+}
+
+.new-milestone-node.active-focus .node-status-marker {
+  border-color: var(--color-olive-light);
+  box-shadow: 0 0 12px var(--color-olive-soft);
+}
+
+.node-stage-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.75rem;
+  max-width: 150px;
+}
+
+.node-stage-number {
+  font-family: var(--font-sub);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.node-stage-title {
+  font-family: var(--font-sub);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-olive-deep);
+  margin-top: 0.15rem;
+  line-height: 1.2;
+}
+
+.node-stage-val {
+  font-family: var(--font-sub);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-top: 0.1rem;
+}
+
+.node-status-text {
+  font-family: var(--font-sub);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  margin-top: 0.4rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.node-status-text.completed {
+  background-color: var(--color-olive-soft);
+  color: var(--color-olive-dark);
+}
+
+.node-status-text.in-progress {
+  background-color: var(--color-gold-soft);
+  color: var(--color-gold-dark);
+}
+
+.node-status-text.upcoming {
+  background-color: #f1f2f0;
+  color: var(--text-muted);
+}
+
+/* Bottom Focus Area Section */
+.focus-details-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+  margin-top: 1.5rem;
+}
+
+.focus-image-box {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+}
+
+.focus-photo {
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.focus-image-box:hover .focus-photo {
+  transform: scale(1.03);
+}
+
+.focus-main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.focus-title {
+  font-size: 1.6rem;
+  color: var(--color-olive-deep);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.focus-description {
+  font-size: 0.95rem;
+  color: var(--text-grey);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Focus Stage Goal Card */
+.focus-stage-goal-card {
+  background: var(--bg-paper);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.stage-goal-header {
+  background: linear-gradient(135deg, var(--color-olive-dark), var(--color-olive-deep));
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--bg-paper);
+}
+
+.goal-header-icon {
+  font-size: 1.6rem;
+  background: rgba(255, 255, 255, 0.15);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.goal-header-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.goal-header-label {
+  font-family: var(--font-sub);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+
+.goal-header-value {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.stage-goal-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.what-built-label {
+  font-family: var(--font-sub);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.what-built-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.what-built-list li {
+  font-size: 0.85rem;
+  color: var(--text-grey);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.built-bullet {
+  font-size: 0.95rem;
+}
+
+.stage-goal-footer {
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-linen);
+}
+
+.stage-progress-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-sub);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.stage-progress-label-row .progress-percent-val {
+  color: var(--color-olive-dark);
+  font-weight: 900;
+  font-size: 0.75rem;
+}
+
+.mini-progress-track {
+  height: 8px;
+  background: rgba(90, 136, 38, 0.08);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.mini-progress-fill {
+  height: 100%;
+  background-color: var(--color-olive);
+  border-radius: var(--radius-full);
+  transition: width 0.8s ease-out;
+}
+
+/* Payment & Benefits Modal Window styling */
+.payment-tier-item-card {
+  background: var(--bg-paper);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.payment-tier-item-card:hover {
+  border-color: var(--color-gold-light);
+  transform: translateY(-1px);
+}
+
+.payment-tier-item-card.active-tier {
+  background: var(--bg-paper);
+  border: 2px solid var(--color-olive);
+  box-shadow: var(--shadow-sm);
+}
+
+.tier-select-circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--text-muted);
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.payment-tier-item-card.active-tier .tier-select-circle {
+  border-color: var(--color-olive);
+  background-color: var(--color-olive);
+}
+
+.payment-tier-item-card.active-tier .tier-select-circle::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--bg-paper);
+}
+
+@media (max-width: 900px) {
+  .payment-window-container {
+    flex-direction: column !important;
+    max-height: 90vh !important;
+  }
+  .payment-benefits-sidebar, .payment-form-side {
+    max-height: none !important;
+    overflow-y: visible !important;
   }
 }

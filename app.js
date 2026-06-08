@@ -24,88 +24,245 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // -------------------------------------------------------------
-  // 2. Public Raising Progress & Milestones Tracker
+  // 2. Public Raising Progress & Milestones Tracker (Mockup Layout)
   // -------------------------------------------------------------
   const GOAL_TARGET = 2500000;
-  
-  const MILESTONE_DETAILS = {
-    "500000": {
-      title: "Stage 1: Property Option Contract ($500K)",
-      body: "PV secures the exclusive purchase option for the historic 2100 5th Ave facility, preventing commercial redevelopment. Initiates neighborhood design sessions and architectural drafts for the garden extensions."
+
+  const FOCUS_STAGES_DATA = [
+    {
+      title: "Option Contract Acquisition",
+      desc: "Securing the exclusive option to purchase 2100 5th Ave in Ivy Hill. Initiating neighborhood designs, surveys, and architectural layouts.",
+      image: "2100-5th-Ave-Oakland-CA-Primary-Photo-1-Large.jpg",
+      goalLabel: "STAGE 1 GOAL",
+      goalValue: "$500K",
+      icon: "🤝",
+      bullets: [
+        "🤝 Option Agreement Signed",
+        "📋 Architectural Feasibility",
+        "📐 Site Survey Drafting",
+        "🏡 Community Feedback Sessions"
+      ],
+      calcProgress: (raised) => Math.min(100, Math.round((raised / 500000) * 100))
     },
-    "1200000": {
-      title: "Stage 2: Core Purchase Acquisition ($1.2M)",
-      body: "Title transfer finalized. PV acquires the full 15,000 sq ft historic church facility in Ivy Hill, securing a permanent physical sanctuary for ecological ministry, holistic education, and local food networks."
+    {
+      title: "Core Purchase Title Transfer",
+      desc: "Securing ownership of the 15,000 sq ft historic church landmark. Securing the physical sanctuary and starting ground renovations.",
+      image: "2100-5th-Ave-Oakland-CA-Primary-Photo-1-Large.jpg",
+      goalLabel: "STAGE 2 GOAL",
+      goalValue: "$1.2M",
+      icon: "🏛️",
+      bullets: [
+        "🏛️ Deed & Title Finalization",
+        "⛪ Sanctuary Interior Cleanup",
+        "🏗️ Core Plumbing & Electrical",
+        "📝 Landmark Permits Filed"
+      ],
+      calcProgress: (raised) => raised < 500000 ? 0 : Math.min(100, Math.round(((raised - 500000) / 700000) * 100))
     },
-    "1800000": {
-      title: "Stage 3: Culinary Renovations & Gardens ($1.8M)",
-      body: "Restoring the social hall and building out the 400 sq ft prep space into a certified commercial-grade kitchen. Seeding external vertical cultivation systems, sound healing chambers, and youth nature circles."
+    {
+      title: "Culinary Renovations & Gardens",
+      desc: "Transforming 400 sq ft of prep space into a certified commercial kitchen and creating healing gardens, vertical food systems, and youth nature spaces.",
+      image: "2100-5th-Ave-Oakland-CA-Primary-Photo-1-Large.jpg",
+      goalLabel: "STAGE 3 GOAL",
+      goalValue: "$1.8M",
+      icon: "🍳",
+      bullets: [
+        "🍳 Commercial Kitchen",
+        "🌱 Vertical Food Systems",
+        "💚 Healing Chambers",
+        "🌳 Youth Nature Spaces"
+      ],
+      calcProgress: (raised) => raised < 1200000 ? 0 : Math.min(100, Math.round(((raised - 1200000) / 600000) * 100))
     },
-    "2500000": {
-      title: "Stage 4: Full Launch & Operating Capital ($2.5M)",
-      body: "PV launches at full capacity. We activate all 10 classrooms, launch the online Skool network courses, fund teacher recruitment programs, and establish weekly farm-to-table culinary dinners."
+    {
+      title: "Full Sanctuary Operating Launch",
+      desc: "Activating all 10 classrooms at full capacity, launching the digital Skool network online, and establishing weekly community farm-to-table banquet dinners.",
+      image: "2100-5th-Ave-Oakland-CA-Primary-Photo-1-Large.jpg",
+      goalLabel: "STAGE 4 GOAL",
+      goalValue: "$2.5M",
+      icon: "🌱",
+      bullets: [
+        "🏫 10 Active Classrooms",
+        "💻 Digital Skool Portal",
+        "🥗 Weekly Community Banquets",
+        "💰 Year 1 Operating Reserves"
+      ],
+      calcProgress: (raised) => raised < 1800000 ? 0 : Math.min(100, Math.round(((raised - 1800000) / 700000) * 100))
     }
-  };
+  ];
+
+  function formatRaisedLarge(amt) {
+    if (amt >= 1000000) {
+      return `$${(amt / 1000000).toFixed(2)}M`;
+    } else {
+      return `$${(amt / 1000).toFixed(0)}K`;
+    }
+  }
 
   function updateRaiseProgress() {
     // Calculate total raised
     const totalRaised = donors.reduce((sum, item) => sum + Number(item.amount), 0);
     const percent = Math.min(Math.round((totalRaised / GOAL_TARGET) * 100), 100);
 
-    // Update DOM counters
-    document.getElementById("stat-total-raised").textContent = `$${totalRaised.toLocaleString()}`;
-    document.getElementById("stat-percent-funded").textContent = `${percent}%`;
-    document.getElementById("progress-bar-fill").style.width = `${percent}%`;
+    // Update circular progress funded percentage
+    const radialPercentText = document.getElementById("radial-percent-funded");
+    if (radialPercentText) radialPercentText.textContent = `${percent}%`;
 
-    // Also update CRM dashboard metric if visible
+    // Circular progress SVG fill
+    const radialFill = document.getElementById("radial-progress-fill");
+    if (radialFill) {
+      const circumference = 364.4;
+      const offset = circumference - (percent / 100) * circumference;
+      radialFill.style.strokeDashoffset = offset;
+    }
+
+    // Main stats row values
+    const mainRaisedAmount = document.getElementById("main-raised-amount");
+    if (mainRaisedAmount) mainRaisedAmount.textContent = formatRaisedLarge(totalRaised);
+
+    const horizontalFill = document.getElementById("horizontal-progress-fill");
+    if (horizontalFill) horizontalFill.style.width = `${percent}%`;
+
+    const statsDonorsCount = document.getElementById("stats-donors-count");
+    if (statsDonorsCount) statsDonorsCount.textContent = 335 + donors.length;
+
+    const statsRemainingAmount = document.getElementById("stats-remaining-amount");
+    if (statsRemainingAmount) {
+      const remaining = Math.max(0, GOAL_TARGET - totalRaised);
+      statsRemainingAmount.textContent = formatRaisedLarge(remaining);
+    }
+
+    // Also update CRM dashboard metrics
     const crmTotalRaised = document.getElementById("crm-val-total-raised");
     const crmDonorCount = document.getElementById("crm-val-donor-count");
     if (crmTotalRaised) crmTotalRaised.textContent = `$${totalRaised.toLocaleString()}`;
     if (crmDonorCount) crmDonorCount.textContent = donors.length;
 
-    // Evaluate nodes active status
-    const nodes = document.querySelectorAll(".milestone-node");
-    let activeAssigned = false;
+    // Evaluate milestone node statuses
+    // Stage 1 ($500K), Stage 2 ($1.2M), Stage 3 ($1.8M), Stage 4 ($2.5M)
+    const stageAmounts = [500000, 1200000, 1800000, 2500000];
+    let activeStageIndex = 0;
+    let foundActive = false;
 
-    // We sort nodes by amount to assess progression
-    const sortedNodes = Array.from(nodes).sort((a, b) => Number(a.dataset.amount) - Number(b.dataset.amount));
+    stageAmounts.forEach((amt, index) => {
+      const nodeElement = document.getElementById(`stage-node-${index}`);
+      const markerElement = document.getElementById(`node-marker-${index}`);
+      const statusTextElement = document.getElementById(`node-status-text-${index}`);
 
-    sortedNodes.forEach((node) => {
-      const amt = Number(node.dataset.amount);
-      node.classList.remove("completed", "active");
+      if (nodeElement && markerElement && statusTextElement) {
+        nodeElement.classList.remove("completed", "active");
 
-      if (totalRaised >= amt) {
-        node.classList.add("completed");
-      } else if (!activeAssigned) {
-        node.classList.add("active");
-        activeAssigned = true;
-        // Auto-populate milestone details with current active stage
-        displayMilestoneDetails(amt);
+        if (totalRaised >= amt) {
+          // Completed
+          nodeElement.classList.add("completed");
+          markerElement.textContent = "✓";
+          statusTextElement.textContent = "COMPLETED";
+          statusTextElement.className = "node-status-text completed";
+        } else if (!foundActive) {
+          // In Progress
+          nodeElement.classList.add("active");
+          markerElement.textContent = "☉";
+          statusTextElement.textContent = "IN PROGRESS";
+          statusTextElement.className = "node-status-text in-progress";
+          activeStageIndex = index;
+          foundActive = true;
+        } else {
+          // Upcoming
+          markerElement.textContent = "○";
+          statusTextElement.textContent = "UPCOMING";
+          statusTextElement.className = "node-status-text upcoming";
+        }
       }
     });
 
-    // If fully raised, set last node to active
-    if (!activeAssigned && sortedNodes.length > 0) {
-      sortedNodes[sortedNodes.length - 1].classList.add("active");
-      displayMilestoneDetails(Number(sortedNodes[sortedNodes.length - 1].dataset.amount));
+    // If fully funded
+    if (!foundActive) {
+      activeStageIndex = 3;
+      const lastNode = document.getElementById(`stage-node-3`);
+      if (lastNode) lastNode.classList.add("active");
     }
+
+    // Update milestone progress line fill
+    const milestoneFill = document.getElementById("new-milestone-line-fill");
+    let linePercent = 0;
+    if (activeStageIndex === 0) {
+      linePercent = (totalRaised / 500000) * 25; // Symmetrical mapping
+    } else if (activeStageIndex === 1) {
+      linePercent = 25 + ((totalRaised - 500000) / 700000) * 25;
+    } else if (activeStageIndex === 2) {
+      linePercent = 50 + ((totalRaised - 1200000) / 600000) * 25;
+    } else {
+      linePercent = 75 + ((totalRaised - 1800000) / 700000) * 25;
+    }
+    
+    linePercent = Math.min(100, Math.max(0, linePercent));
+    if (milestoneFill) milestoneFill.style.width = `${linePercent}%`;
+
+    // Populate active focus stage details
+    updateFocusSection(activeStageIndex, totalRaised);
   }
 
-  function displayMilestoneDetails(amount) {
-    const details = MILESTONE_DETAILS[amount];
-    if (details) {
-      document.getElementById("milestone-title").textContent = details.title;
-      document.getElementById("milestone-body").textContent = details.body;
+  function updateFocusSection(stageIndex, currentRaised) {
+    const raised = (typeof currentRaised === 'number') 
+      ? currentRaised 
+      : donors.reduce((sum, item) => sum + Number(item.amount), 0);
+
+    const data = FOCUS_STAGES_DATA[stageIndex];
+    if (!data) return;
+
+    // Title & Description
+    const titleEl = document.getElementById("focus-section-title");
+    const descEl = document.getElementById("focus-section-description");
+    if (titleEl) titleEl.textContent = data.title;
+    if (descEl) descEl.textContent = data.desc;
+
+    // Header Card
+    const goalLabelEl = document.getElementById("focus-goal-label");
+    const goalValEl = document.getElementById("focus-goal-value");
+    const goalHeaderIconEl = document.getElementById("focus-goal-header-icon");
+    if (goalLabelEl) goalLabelEl.textContent = data.goalLabel;
+    if (goalValEl) goalValEl.textContent = data.goalValue;
+    if (goalHeaderIconEl) goalHeaderIconEl.textContent = data.icon;
+
+    // Bullets list
+    const builtListEl = document.getElementById("focus-built-list");
+    if (builtListEl) {
+      builtListEl.innerHTML = "";
+      data.bullets.forEach((bullet) => {
+        const li = document.createElement("li");
+        const parts = bullet.split(" ");
+        const icon = parts[0];
+        const text = parts.slice(1).join(" ");
+        li.innerHTML = `<span class="built-bullet">${icon}</span> ${text}`;
+        builtListEl.appendChild(li);
+      });
     }
+
+    // Progress footer calculations
+    const progressLabelEl = document.getElementById("focus-progress-label");
+    const progressPercentEl = document.getElementById("focus-progress-percent");
+    const progressFillEl = document.getElementById("focus-progress-bar-fill");
+
+    const stagePercent = data.calcProgress(raised);
+
+    if (progressLabelEl) progressLabelEl.textContent = `${data.goalLabel.replace("GOAL", "PROGRESS")}`;
+    if (progressPercentEl) progressPercentEl.textContent = `${stagePercent}%`;
+    if (progressFillEl) progressFillEl.style.width = `${stagePercent}%`;
+
+    // Highlight the active focus node in the milestone list
+    document.querySelectorAll(".new-milestone-node").forEach((node, idx) => {
+      node.classList.remove("active-focus");
+      if (idx === stageIndex) {
+        node.classList.add("active-focus");
+      }
+    });
   }
 
-  // Setup click listeners for milestone nodes
-  document.querySelectorAll(".milestone-node").forEach((node) => {
+  // Click listeners for the new milestone nodes to view stage details on demand
+  document.querySelectorAll(".new-milestone-node").forEach((node) => {
     node.addEventListener("click", () => {
-      // De-active others, mark this clicked one active for review
-      document.querySelectorAll(".milestone-node").forEach((n) => n.classList.remove("active"));
-      node.classList.add("active");
-      displayMilestoneDetails(Number(node.dataset.amount));
+      const idx = parseInt(node.dataset.index, 10);
+      updateFocusSection(idx);
     });
   });
 
@@ -173,10 +330,24 @@ document.addEventListener("DOMContentLoaded", () => {
       const amountInput = document.getElementById("invest-amount");
       if (amountInput) {
         amountInput.value = amt;
+        window.updatePaymentTierVisuals(amt);
       }
       showModal(investModal);
     });
   });
+
+  // Centered Invest Button inside fundraiser area
+  const fundraiserInvestBtn = document.getElementById("fundraiser-invest-btn");
+  if (fundraiserInvestBtn) {
+    fundraiserInvestBtn.addEventListener("click", () => {
+      const amountInput = document.getElementById("invest-amount");
+      if (amountInput) {
+        amountInput.value = 5000; // Default to Grove Tier
+        window.updatePaymentTierVisuals(5000);
+      }
+      showModal(investModal);
+    });
+  }
 
   // Hero Explore Tiers scroll trigger
   const heroCalcBtn = document.getElementById("hero-calc-btn");
@@ -188,6 +359,84 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  // Global functions for split payment modal window
+  window.selectPaymentTier = function(amount) {
+    const amountInput = document.getElementById("invest-amount");
+    if (amountInput) {
+      amountInput.value = amount;
+      window.updatePaymentTierVisuals(amount);
+    }
+  };
+
+  window.updatePaymentTierVisuals = function(amountVal) {
+    const amount = Number(amountVal) || 0;
+    
+    // Deactivate all cards in the modal sidebar
+    const cardIds = [
+      "pay-tier-seedling",
+      "pay-tier-sprout",
+      "pay-tier-harvest",
+      "pay-tier-grove",
+      "pay-tier-pillar",
+      "pay-tier-visionary"
+    ];
+    cardIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove("active-tier");
+    });
+
+    let activeId = "";
+    let tierName = "None";
+    let isGoldTier = false;
+
+    if (amount >= 100 && amount < 500) {
+      activeId = "pay-tier-seedling";
+      tierName = "Seedling Tier";
+    } else if (amount >= 500 && amount < 1000) {
+      activeId = "pay-tier-sprout";
+      tierName = "Sprout Tier";
+    } else if (amount >= 1000 && amount < 5000) {
+      activeId = "pay-tier-harvest";
+      tierName = "Harvest Tier";
+    } else if (amount >= 5000 && amount < 25000) {
+      activeId = "pay-tier-grove";
+      tierName = "Grove Tier";
+      isGoldTier = true;
+    } else if (amount >= 25000 && amount < 100000) {
+      activeId = "pay-tier-pillar";
+      tierName = "Pillar Tier";
+      isGoldTier = true;
+    } else if (amount >= 100000) {
+      activeId = "pay-tier-visionary";
+      tierName = "Visionary Tier";
+      isGoldTier = true;
+    }
+
+    // Activate matching card in sidebar
+    if (activeId) {
+      const el = document.getElementById(activeId);
+      if (el) el.classList.add("active-tier");
+    }
+
+    // Update alert badge dynamically
+    const alertBox = document.getElementById("active-tier-alert");
+    if (alertBox) {
+      if (tierName !== "None") {
+        alertBox.style.display = "flex";
+        alertBox.textContent = `🎉 Active Benefit: ${tierName}`;
+        if (isGoldTier) {
+          alertBox.style.backgroundColor = "var(--color-gold-soft)";
+          alertBox.style.color = "var(--color-gold-dark)";
+        } else {
+          alertBox.style.backgroundColor = "var(--color-olive-soft)";
+          alertBox.style.color = "var(--color-olive-dark)";
+        }
+      } else {
+        alertBox.style.display = "none";
+      }
+    }
+  };
 
   // -------------------------------------------------------------
   // 5. Classes & Dynamic Tuition Split Rendering

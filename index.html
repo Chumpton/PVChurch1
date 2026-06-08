@@ -34,6 +34,7 @@
     <div class="container">
       <div class="hero-text-content">
         <h3 class="hero-tagline">rooted in love guided by light</h3>
+        <img src="logo.png" alt="Positive Vibrations Logo" class="hero-logo-img" style="height: 120px; width: auto; margin: 1.5rem auto; display: block;">
         <h1>The Positive Vibrations Church Raise</h1>
         <h4 style="margin: 1.5rem 0 1.25rem 0; font-size:1.6rem; font-weight:700; color:var(--color-olive-deep); text-transform: uppercase; letter-spacing: -0.01em;">
           Securing a physical home for conscious commUNITY, holistic healing, and regenerative education in Oakland
@@ -54,58 +55,190 @@
       </div>
 
       <!-- Milestone Progress Box -->
-      <div class="card progress-panel" id="progress-panel">
-        <div class="progress-header-stats">
-          <div class="stat-box">
-            <div class="stat-label">💵 Total Raised</div>
-            <div class="stat-value green-text" id="stat-total-raised">$1,450,000</div>
+      <div class="card progress-panel" id="progress-panel" style="max-width:1050px;">
+        <!-- Top Section: Stats Box -->
+        <div class="fundraiser-top-section">
+          <!-- Circular Dial -->
+          <div class="radial-progress-container">
+            <svg class="radial-progress-svg" width="140" height="140" viewBox="0 0 140 140">
+              <!-- Background Circle -->
+              <circle class="radial-progress-bg" cx="70" cy="70" r="58" fill="transparent" stroke="#e6e8e2" stroke-width="12"></circle>
+              <!-- Foreground circle with gradient -->
+              <circle class="radial-progress-fill" id="radial-progress-fill" cx="70" cy="70" r="58" fill="transparent" stroke="url(#radial-gradient)" stroke-width="12" stroke-dasharray="364.4" stroke-dashoffset="160" stroke-linecap="round"></circle>
+              
+              <!-- Define Gradient -->
+              <defs>
+                <linearGradient id="radial-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="var(--color-olive-dark)" />
+                  <stop offset="50%" stop-color="var(--color-olive-light)" />
+                  <stop offset="100%" stop-color="var(--color-gold)" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class="radial-progress-text">
+              <span class="radial-percent" id="radial-percent-funded">56%</span>
+              <span class="radial-label">FUNDED</span>
+            </div>
           </div>
-          <div class="stat-box">
-            <div class="stat-label">🎯 Goal Target</div>
-            <div class="stat-value">$2,500,000</div>
+
+          <!-- Middle Column: Raised Statistics & Horizontal Progress Bar -->
+          <div class="fundraiser-main-stats">
+            <div class="raised-value-title">
+              <span class="raised-amount-large" id="main-raised-amount">$1.41M</span>
+              <span class="raised-goal-subtext">RAISED OF <span id="main-goal-target">$2.50M</span> GOAL</span>
+            </div>
+            
+            <!-- Thick Progress Bar -->
+            <div class="horizontal-progress-bar-wrapper">
+              <div class="horizontal-progress-track">
+                <div class="horizontal-progress-fill" id="horizontal-progress-fill"></div>
+              </div>
+            </div>
+
+            <!-- Stats Row below progress bar -->
+            <div class="sub-stats-grid">
+              <div class="sub-stat-item">
+                <div class="sub-stat-icon">👥</div>
+                <div class="sub-stat-details">
+                  <span class="sub-stat-number" id="stats-donors-count">342</span>
+                  <span class="sub-stat-label">DONORS</span>
+                </div>
+              </div>
+              <div class="sub-stat-item">
+                <div class="sub-stat-icon red-icon">❤️</div>
+                <div class="sub-stat-details">
+                  <span class="sub-stat-number">+42</span>
+                  <span class="sub-stat-label">DONORS THIS WEEK</span>
+                </div>
+              </div>
+              <div class="sub-stat-item">
+                <div class="sub-stat-icon gold-icon">💰</div>
+                <div class="sub-stat-details">
+                  <span class="sub-stat-number" id="stats-remaining-amount">$1.09M</span>
+                  <span class="sub-stat-label">REMAINING TO GOAL</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="stat-box">
-            <div class="stat-label">📈 Percent Funded</div>
-            <div class="stat-value" id="stat-percent-funded">58%</div>
+
+          <!-- Right Column: Leaf Card Callout -->
+          <div class="callout-card-leaf">
+            <div class="leaf-icon-wrapper">🌱</div>
+            <p class="leaf-card-text">Building a regenerative hub for food, healing and community.</p>
           </div>
         </div>
 
-        <!-- The Interactive Milestone Bar -->
-        <div class="milestone-container">
-          <div class="progress-track-bg"></div>
-          <div class="progress-fill" id="progress-bar-fill"></div>
-      <div class="milestones-nodes-list" id="milestones-nodes">
-        <!-- Node 1: $500k -->
-        <div class="milestone-node" data-amount="500000" data-index="0" id="node-500k" style="left: 20%;">
-          <div class="milestone-dot">📝</div>
-          <div class="milestone-label">Option Contract</div>
-          <div class="milestone-amount">$500K</div>
-        </div>
-        <!-- Node 2: $1.2M -->
-        <div class="milestone-node" data-amount="1200000" data-index="1" id="node-120m" style="left: 48%;">
-          <div class="milestone-dot">🏛️</div>
-          <div class="milestone-label">Core Purchase</div>
-          <div class="milestone-amount">$1.2M</div>
-        </div>
-        <!-- Node 3: $1.8M -->
-        <div class="milestone-node" data-amount="1800000" data-index="2" id="node-180m" style="left: 72%;">
-          <div class="milestone-dot">🍳</div>
-          <div class="milestone-label">Renovations & Kitchen</div>
-          <div class="milestone-amount">$1.8M</div>
-        </div>
-        <!-- Node 4: $2.5M -->
-        <div class="milestone-node" data-amount="2500000" data-index="3" id="node-250m" style="left: 100%;">
-          <div class="milestone-dot">🌱</div>
-          <div class="milestone-label">Full Operating Launch</div>
-          <div class="milestone-amount">$2.5M</div>
-        </div>
-      </div>
+        <hr class="fundraiser-divider">
+
+        <!-- Milestone Bar (Middle section) -->
+        <div class="new-milestone-bar-container">
+          <div class="new-milestone-line">
+            <div class="new-milestone-line-fill" id="new-milestone-line-fill"></div>
+          </div>
+          <div class="new-milestones-list">
+            <!-- Stage 1 -->
+            <div class="new-milestone-node" data-amount="500000" data-index="0" id="stage-node-0">
+              <div class="node-status-marker" id="node-marker-0">✓</div>
+              <div class="node-stage-icon">🤝</div>
+              <div class="node-stage-meta">
+                <span class="node-stage-number">STAGE 1</span>
+                <span class="node-stage-title">Option Contract</span>
+                <span class="node-stage-val">$500K</span>
+                <span class="node-status-text completed" id="node-status-text-0">COMPLETED</span>
+              </div>
+            </div>
+            <!-- Stage 2 -->
+            <div class="new-milestone-node" data-amount="1200000" data-index="1" id="stage-node-1">
+              <div class="node-status-marker" id="node-marker-1">✓</div>
+              <div class="node-stage-icon">🏛️</div>
+              <div class="node-stage-meta">
+                <span class="node-stage-number">STAGE 2</span>
+                <span class="node-stage-title">Core Purchase</span>
+                <span class="node-stage-val">$1.2M</span>
+                <span class="node-status-text completed" id="node-status-text-1">COMPLETED</span>
+              </div>
+            </div>
+            <!-- Stage 3 -->
+            <div class="new-milestone-node" data-amount="1800000" data-index="2" id="stage-node-2">
+              <div class="node-status-marker" id="node-marker-2">☉</div>
+              <div class="node-stage-icon">🍳</div>
+              <div class="node-stage-meta">
+                <span class="node-stage-number">STAGE 3</span>
+                <span class="node-stage-title">Renovations & Gardens</span>
+                <span class="node-stage-val">$1.8M</span>
+                <span class="node-status-text in-progress" id="node-status-text-2">IN PROGRESS</span>
+              </div>
+            </div>
+            <!-- Stage 4 -->
+            <div class="new-milestone-node" data-amount="2500000" data-index="3" id="stage-node-3">
+              <div class="node-status-marker" id="node-marker-3">○</div>
+              <div class="node-stage-icon">🌱</div>
+              <div class="node-stage-meta">
+                <span class="node-stage-number">STAGE 4</span>
+                <span class="node-stage-title">Full Operating Launch</span>
+                <span class="node-stage-val">$2.5M</span>
+                <span class="node-status-text upcoming" id="node-status-text-3">UPCOMING</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Detail display card of selected milestone -->
-        <div class="milestone-display-card" id="milestone-desc-panel">
-          <h4 id="milestone-title">Select a milestone node to inspect goals...</h4>
-          <p id="milestone-body">Hover or click on the milestone nodes above to explore each stage of the PV acquisition roadmap.</p>
+        <!-- Centered Invest Button inside fundraiser area -->
+        <div class="fundraiser-action-row" style="display:flex; justify-content:center; margin: 1.5rem 0 3.5rem 0; width: 100%;">
+          <button class="btn btn-primary" id="fundraiser-invest-btn" style="padding: 1rem 3.5rem; font-size: 1.15rem; box-shadow: 0 4px 18px hsla(88, 56%, 34%, 0.35); text-transform:uppercase; letter-spacing:0.02em;">
+            💰 Invest in the Sanctuary
+          </button>
+        </div>
+
+        <!-- Focus Detail Box (Bottom section) -->
+        <div class="focus-details-wrapper">
+          <!-- Left photo -->
+          <div class="focus-image-box">
+            <img src="2100-5th-Ave-Oakland-CA-Primary-Photo-1-Large.jpg" alt="PV Community Sanctuary" class="focus-photo" id="focus-section-image">
+          </div>
+
+          <!-- Center Content -->
+          <div class="focus-main-content">
+            <span class="badge badge-green" style="margin-bottom:0.75rem;">CURRENT FOCUS</span>
+            <h3 class="focus-title" id="focus-section-title">CULINARY RENOVATIONS & GARDENS</h3>
+            <p class="focus-description" id="focus-section-description">
+              Transforming 400 sq ft of prep space into a certified commercial kitchen and creating healing gardens, vertical food systems, and youth nature spaces.
+            </p>
+            <div>
+              <button class="btn btn-outline" style="padding:0.5rem 1rem; font-size:0.8rem; display:inline-flex; align-items:center; gap:0.5rem;" onclick="document.getElementById('who-we-serve').scrollIntoView({behavior:'smooth'})">
+                🌱 Why this matters
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Stage Goal Card -->
+          <div class="focus-stage-goal-card">
+            <div class="stage-goal-header">
+              <div class="goal-header-icon" id="focus-goal-header-icon">🍳</div>
+              <div class="goal-header-text">
+                <span class="goal-header-label" id="focus-goal-label">STAGE 3 GOAL</span>
+                <span class="goal-header-value" id="focus-goal-value">$1.8M</span>
+              </div>
+            </div>
+            <div class="stage-goal-body">
+              <span class="what-built-label">WHAT'S BEING BUILT</span>
+              <ul class="what-built-list" id="focus-built-list">
+                <li><span class="built-bullet">🍳</span> Commercial Kitchen</li>
+                <li><span class="built-bullet">🌱</span> Vertical Food Systems</li>
+                <li><span class="built-bullet">💚</span> Healing Chambers</li>
+                <li><span class="built-bullet">🌳</span> Youth Nature Spaces</li>
+              </ul>
+            </div>
+            <div class="stage-goal-footer">
+              <div class="stage-progress-label-row">
+                <span id="focus-progress-label">STAGE 3 PROGRESS</span>
+                <span class="progress-percent-val" id="focus-progress-percent">78%</span>
+              </div>
+              <div class="mini-progress-track">
+                <div class="mini-progress-fill" id="focus-progress-bar-fill" style="width: 78%;"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -433,34 +566,117 @@
     </div>
   </footer>
 
-  <!-- MODAL: INVEST NOW -->
+  <!-- MODAL: INVEST NOW (Split Payment & Benefits Window) -->
   <div class="modal-overlay-backdrop" id="modal-invest">
-    <div class="modal-card-container">
-      <button class="modal-close-trigger" id="modal-invest-close">&times;</button>
-      <h3>Commit to the Raise</h3>
-      <p>Fill out your pledge details below to secure your positive vibrations community tiers and investment splits.</p>
-      <form id="invest-form">
-        <div class="form-group-wrapper">
-          <label for="invest-name">Full Name</label>
-          <input type="text" id="invest-name" required placeholder="Elena Rostova">
+    <div class="modal-card-container payment-window-container" style="max-width: 950px; width: 100%; padding: 0; display: flex; flex-direction: row; overflow: hidden; border-radius: var(--radius-lg);">
+      <button class="modal-close-trigger" id="modal-invest-close" style="z-index: 10; color: var(--text-dark); top: 1rem; right: 1.5rem; font-size: 2rem; background:transparent; border:none; cursor:pointer;">&times;</button>
+      
+      <!-- Left Column: Tiers and Benefits List -->
+      <div class="payment-benefits-sidebar" style="flex: 1.1; background: var(--bg-linen); padding: 3rem; border-right: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 2rem; overflow-y: auto; max-height: 85vh;">
+        <div>
+          <span class="badge badge-green" style="margin-bottom: 0.75rem;">Capital Alignment</span>
+          <h3 style="font-size: 1.6rem; color: var(--color-olive-deep); text-transform: uppercase;">Investor Tiers & Benefits</h3>
+          <p style="font-size: 0.9rem; color: var(--text-grey); margin-top: 0.5rem;">Aligning incentives for tangible community returns and regional resilience. Select your pledge tier:</p>
         </div>
-        <div class="form-group-wrapper">
-          <label for="invest-email">Email Address</label>
-          <input type="email" id="invest-email" required placeholder="elena@example.com">
+
+        <div class="payment-tiers-stack" style="display: flex; flex-direction: column; gap: 1.1rem;">
+          <!-- Seedling Card -->
+          <div class="payment-tier-item-card" id="pay-tier-seedling" onclick="selectPaymentTier(100)">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="badge badge-green">Seedling ($100 - $499)</span>
+              <span class="tier-select-circle"></span>
+            </div>
+            <p class="payment-tier-desc" style="font-size:0.8rem; margin-top:0.5rem; color:var(--text-grey);">PV membership credentials, community newsletter & online forum access.</p>
+          </div>
+          <!-- Sprout Card -->
+          <div class="payment-tier-item-card" id="pay-tier-sprout" onclick="selectPaymentTier(500)">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="badge badge-green">Sprout ($500 - $999)</span>
+              <span class="tier-select-circle"></span>
+            </div>
+            <p class="payment-tier-desc" style="font-size:0.8rem; margin-top:0.5rem; color:var(--text-grey);">PV canvas tote, Priority local farm-share seasonal vegetable box & 10% class discount.</p>
+          </div>
+          <!-- Harvest Card -->
+          <div class="payment-tier-item-card" id="pay-tier-harvest" onclick="selectPaymentTier(1000)">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="badge badge-green">Harvest ($1,000 - $4,999)</span>
+              <span class="tier-select-circle"></span>
+            </div>
+            <p class="payment-tier-desc" style="font-size:0.8rem; margin-top:0.5rem; color:var(--text-grey);">Name engraved on the Living Donor Wall, seasonal banquet & 15% class discount.</p>
+          </div>
+          <!-- Grove Card -->
+          <div class="payment-tier-item-card" id="pay-tier-grove" onclick="selectPaymentTier(5000)">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="badge badge-yellow">Grove ($5,000 - $24,999)</span>
+              <span class="tier-select-circle"></span>
+            </div>
+            <p class="payment-tier-desc" style="font-size:0.8rem; margin-top:0.5rem; color:var(--text-grey);">Private dinner with Campton & Chef Steve, lifetime VIP, 20% room rental discount.</p>
+          </div>
+          <!-- Pillar Card -->
+          <div class="payment-tier-item-card" id="pay-tier-pillar" onclick="selectPaymentTier(25000)">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="badge badge-yellow">Pillar ($25,000 - $99,999)</span>
+              <span class="tier-select-circle"></span>
+            </div>
+            <p class="payment-tier-desc" style="font-size:0.8rem; margin-top:0.5rem; color:var(--text-grey);">Dedicational room plaque, commercial kitchen hours (10/mo) & 10% space revenue splits.</p>
+          </div>
+          <!-- Visionary Card -->
+          <div class="payment-tier-item-card" id="pay-tier-visionary" onclick="selectPaymentTier(100000)">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="badge badge-yellow">Visionary ($100,000+)</span>
+              <span class="tier-select-circle"></span>
+            </div>
+            <p class="payment-tier-desc" style="font-size:0.8rem; margin-top:0.5rem; color:var(--text-grey);">Hall naming rights, Board Seat option, 20% space revenue splits & custom JV terms.</p>
+          </div>
         </div>
-        <div class="form-group-wrapper">
-          <label for="invest-amount">Investment Amount ($)</label>
-          <input type="number" id="invest-amount" required min="100" placeholder="5000">
-        </div>
-        <div class="form-group-wrapper">
-          <label for="invest-note">Special Notes / Intended Use</label>
-          <textarea id="invest-note" rows="3" placeholder="Pledged for commercial culinary space support..."></textarea>
-        </div>
-        <div class="form-actions-row">
-          <button type="button" class="btn btn-text" id="modal-invest-cancel">Cancel</button>
-          <button type="submit" class="btn btn-primary">Submit Pledge</button>
-        </div>
-      </form>
+      </div>
+
+      <!-- Right Column: Card Details Payment Form -->
+      <div class="payment-form-side" style="flex: 0.9; padding: 3rem; display: flex; flex-direction: column; justify-content: center; background: var(--bg-paper); max-height: 85vh; overflow-y: auto;">
+        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem; text-transform: uppercase;">Commit Pledge</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">Confirm your simulated contribution details below.</p>
+        
+        <form id="invest-form">
+          <div class="form-group-wrapper">
+            <label for="invest-name">Full Name</label>
+            <input type="text" id="invest-name" required placeholder="Elena Rostova" style="padding: 0.75rem 1rem;">
+          </div>
+          <div class="form-group-wrapper">
+            <label for="invest-email">Email Address</label>
+            <input type="email" id="invest-email" required placeholder="elena@example.com" style="padding: 0.75rem 1rem;">
+          </div>
+          <div class="form-group-wrapper">
+            <label for="invest-amount">Investment Amount ($)</label>
+            <input type="number" id="invest-amount" required min="100" placeholder="5000" style="padding: 0.75rem 1rem;" oninput="updatePaymentTierVisuals(this.value)">
+          </div>
+
+          <!-- Card Details Input (Simulated) -->
+          <div class="simulated-payment-box" style="margin: 1.25rem 0; padding: 1.25rem; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--bg-linen);">
+            <span style="display:block; font-size:0.75rem; font-family:var(--font-sub); font-weight:700; color:var(--text-grey); margin-bottom:0.75rem; text-transform:uppercase;">💳 Simulated Payment Card</span>
+            <div class="form-group-wrapper" style="margin-bottom:0.75rem;">
+              <input type="text" placeholder="Card Number (4111 2222 3333 4444)" maxlength="19" style="padding: 0.6rem 0.85rem; font-size:0.9rem; font-family: monospace; background:var(--bg-paper);">
+            </div>
+            <div style="display:flex; gap:0.75rem;">
+              <input type="text" placeholder="MM/YY" maxlength="5" style="width:50%; padding: 0.6rem 0.85rem; font-size:0.9rem; font-family: monospace; background:var(--bg-paper);">
+              <input type="text" placeholder="CVC" maxlength="3" style="width:50%; padding: 0.6rem 0.85rem; font-size:0.9rem; font-family: monospace; background:var(--bg-paper);">
+            </div>
+          </div>
+
+          <div class="form-group-wrapper">
+            <label for="invest-note">Special Notes / Intended Use</label>
+            <textarea id="invest-note" rows="2" placeholder="Pledged for commercial culinary space support..." style="padding: 0.75rem 1rem;"></textarea>
+          </div>
+
+          <div class="active-tier-alert-box" id="active-tier-alert" style="margin-top: 1rem; padding: 0.75rem 1rem; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; background-color: var(--color-gold-soft); color: var(--color-gold-dark);">
+            🎉 Active Benefit: Grove Tier
+          </div>
+
+          <div class="form-actions-row" style="margin-top: 2rem;">
+            <button type="button" class="btn btn-text" id="modal-invest-cancel">Cancel</button>
+            <button type="submit" class="btn btn-primary" style="padding: 0.75rem 1.5rem;">Confirm simulated payment</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 
