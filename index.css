@@ -1649,428 +1649,11 @@ nav ul li a:hover {
 }
 
 /* Responsiveness adjustments */
-@media (max-width: 1024px) {
-  .grid-3, .team-layout-grid, .class-grid-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .crm-metrics-dashboard-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .crm-visuals-row {
-    grid-template-columns: 1fr;
-  }
-  .fundraiser-top-section {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 2rem;
-  }
-  .focus-details-wrapper {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-}
 
-@media (max-width: 768px) {
-  .logo-text {
-    display: none;
-  }
-  .pillars-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  .showcase-features-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  .property-card-interactive {
-    order: 1;
-  }
-  .space-detail-viewer {
-    order: 2;
-  }
-  .space-detail-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  .space-photo-showcase {
-    order: 1;
-  }
-  .space-detail-text {
-    order: 2;
-  }
-  .modal-card-container {
-    padding: 1.5rem !important;
-  }
-  .modal-overlay-backdrop {
-    padding: 1rem;
-  }
-  .hero-carousel-container {
-    aspect-ratio: 4 / 3;
-    margin: 2rem auto 0.5rem auto;
-  }
-  .carousel-arrow {
-    width: 38px;
-    height: 38px;
-    font-size: 1.8rem;
-  }
-  .carousel-arrow.prev { left: 0.75rem; }
-  .carousel-arrow.next { right: 0.75rem; }
 
-  .container {
-    padding: 0 1.25rem;
-  }
-  .section-padding, .section-padding-beige {
-    padding: 3.5rem 0;
-  }
-  .card {
-    padding: 1.5rem !important; /* Limit card padding on mobile */
-    border-radius: var(--radius-md) !important;
-  }
 
-  /* Responsive Hero Text and Logo */
-  .hero {
-    padding: 8rem 0 4rem 0;
-  }
-  .hero-text-content h1 {
-    font-size: 2.2rem;
-    line-height: 1.25;
-  }
-  .hero-logo-img {
-    height: 90px !important;
-    margin: 1rem auto !important;
-  }
-  .hero-subheading {
-    font-size: 1.15rem !important;
-    line-height: 1.4 !important;
-    margin: 1.25rem 0 !important;
-  }
-  .hero-text-content .hero-intro {
-    font-size: 1.05rem;
-  }
-  .hero-text-content .hero-desc {
-    font-size: 0.95rem;
-    margin-bottom: 2rem;
-  }
-  .hero-actions {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: stretch;
-  }
-  .hero-actions .btn {
-    width: 100%;
-  }
 
-  /* Mobile Header Navigation Override */
-  nav ul {
-    display: flex !important;
-    gap: 0.5rem !important;
-  }
-  nav ul li:not(:nth-last-child(-n+2)) {
-    display: none !important; /* Hide other links, show CTA buttons */
-  }
-  nav ul li button {
-    padding: 0.45rem 0.85rem !important;
-    font-size: 0.75rem !important;
-    border-radius: var(--radius-sm) !important;
-  }
 
-  /* Fundraiser Panel Responsive styling */
-  .progress-panel {
-    padding: 1.25rem !important;
-  }
-  .raised-amount-large {
-    font-size: 2.2rem !important;
-  }
-  .fundraiser-top-section {
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
-    gap: 1.25rem !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-  .radial-progress-container {
-    width: 90px !important;
-    height: 90px !important;
-    margin: 0 !important;
-  }
-  .radial-progress-text .radial-percent {
-    font-size: 1.6rem !important;
-  }
-  .radial-progress-text .radial-label {
-    font-size: 0.6rem !important;
-    margin-top: 0.1rem !important;
-  }
-  .fundraiser-main-stats {
-    flex: 1 !important;
-    min-width: 180px !important;
-    gap: 0.5rem !important;
-    text-align: left !important;
-  }
-  .raised-value-title {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 0.15rem !important;
-  }
-  .raised-goal-subtext {
-    font-size: 0.65rem !important;
-  }
-  .sub-stats-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-    width: 100% !important;
-    gap: 0.4rem !important;
-  }
-  .sub-stat-item {
-    background: var(--bg-linen);
-    padding: 0.4rem !important;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border-color);
-    flex-direction: column !important;
-    text-align: center !important;
-    gap: 0.2rem !important;
-  }
-  .sub-stat-icon {
-    width: 24px !important;
-    height: 24px !important;
-    font-size: 0.75rem !important;
-  }
-  .sub-stat-number {
-    font-size: 0.85rem !important;
-  }
-  .sub-stat-label {
-    font-size: 0.55rem !important;
-  }
-  .callout-card-leaf {
-    width: 100% !important;
-    padding: 0.75rem 1rem !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 0.75rem !important;
-  }
-  .leaf-icon-wrapper {
-    width: 28px !important;
-    height: 28px !important;
-    font-size: 1rem !important;
-  }
-  .leaf-card-text {
-    font-size: 0.75rem !important;
-    margin: 0 !important;
-  }
-  .new-milestone-bar-container {
-    margin: 2rem 35px 3rem 35px !important;
-    overflow: visible !important;
-  }
-  .new-milestone-line {
-    display: block !important;
-    height: 16px !important;
-    top: 10px !important;
-  }
-  .new-milestones-list {
-    display: block !important;
-    height: 70px !important;
-    position: relative !important;
-  }
-  .new-milestone-node {
-    position: absolute !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    text-align: center !important;
-    width: 70px !important;
-    transform: translateX(-50%) !important;
-    cursor: pointer !important;
-    pointer-events: auto !important;
-    top: 0 !important;
-  }
-  
-  #stage-node-0 { left: 20% !important; }
-  #stage-node-1 { left: 48% !important; }
-  #stage-node-2 { left: 72% !important; }
-  #stage-node-3 { left: 100% !important; }
-
-  .node-status-marker {
-    width: 20px !important;
-    height: 20px !important;
-    font-size: 0.65rem !important;
-    border-width: 2px !important;
-  }
-  .new-milestone-node.active .node-status-marker::before {
-    width: 6px !important;
-    height: 6px !important;
-  }
-  .node-stage-icon {
-    display: none !important;
-  }
-  .node-stage-meta {
-    margin-top: 0.5rem !important;
-    align-items: center !important;
-    max-width: 70px !important;
-  }
-  .node-stage-number {
-    display: none !important;
-  }
-  .node-stage-title {
-    font-size: 0.6rem !important;
-    text-align: center !important;
-    line-height: 1.15 !important;
-    white-space: normal !important;
-  }
-  .node-stage-val {
-    font-size: 0.65rem !important;
-    margin-top: 0.1rem !important;
-  }
-  .node-status-text {
-    display: none !important;
-  }
-
-  /* Grid Layouts Overrides */
-  h2 { font-size: 1.85rem; }
-  .grid-2, .showcase-features-grid, .calc-grid, .edu-splits-splitflow {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-  .grid-3, .team-layout-grid, .class-grid-container {
-    grid-template-columns: 1fr;
-  }
-  .calculator-panel {
-    padding: 1.75rem;
-  }
-  .progress-header-stats {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-  .newsletter-form-wrapper {
-    flex-direction: column;
-  }
-
-  /* Focus Details area margins */
-  .focus-image-box {
-    display: none !important;
-  }
-  .focus-title {
-    font-size: 1.25rem !important;
-  }
-  .focus-description {
-    font-size: 0.85rem !important;
-    margin-bottom: 1rem !important;
-  }
-  .focus-stage-goal-card {
-    border-radius: var(--radius-md) !important;
-  }
-  .stage-goal-header {
-    padding: 0.75rem 1rem !important;
-    gap: 0.75rem !important;
-  }
-  .goal-header-icon {
-    width: 32px !important;
-    height: 32px !important;
-    font-size: 1.1rem !important;
-  }
-  .goal-header-value {
-    font-size: 1.1rem !important;
-  }
-  .stage-goal-body {
-    padding: 1rem !important;
-  }
-  .what-built-list {
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
-    gap: 0.4rem !important;
-  }
-  .what-built-list li {
-    font-size: 0.72rem !important;
-    background: var(--bg-linen);
-    padding: 0.25rem 0.5rem !important;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border-color);
-  }
-  .stage-goal-footer {
-    padding: 0.75rem 1rem !important;
-  }
-
-  /* Tiers explorer card padding and responsive adjustments */
-  .tiers-explorer-card {
-    padding: 1.25rem !important;
-  }
-  .explorer-header {
-    margin-bottom: 1.5rem !important;
-  }
-  .explorer-header h3 {
-    font-size: 1.35rem !important;
-  }
-  .tiers-slider-wrapper {
-    margin: 1.5rem 0 !important;
-  }
-  .tier-info-card-left {
-    padding: 1.25rem !important;
-    gap: 1rem !important;
-  }
-  #explorer-tier-name {
-    font-size: 1.3rem !important;
-  }
-  #explorer-tier-amount {
-    font-size: 2rem !important;
-  }
-  #explorer-tier-description {
-    font-size: 0.85rem !important;
-  }
-  .tier-rewards-lists-right {
-    gap: 1rem !important;
-  }
-  .reward-category-card {
-    padding: 0.85rem 1rem !important;
-    gap: 0.75rem !important;
-  }
-  .reward-icon-box {
-    font-size: 1.25rem !important;
-    width: 36px !important;
-    height: 36px !important;
-    border-radius: 8px !important;
-  }
-  .reward-category-card h5 {
-    font-size: 0.8rem !important;
-  }
-  .reward-category-card p {
-    font-size: 0.8rem !important;
-    margin-top: 0.15rem !important;
-  }
-
-  /* Modal split columns and paddings */
-  .payment-benefits-sidebar, .payment-form-side {
-    padding: 1.25rem !important;
-  }
-  .payment-window-container {
-    max-height: 95vh !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .space-bullet-points {
-    grid-template-columns: 1fr;
-  }
-  .hero-text-content h1 {
-    font-size: 1.85rem;
-  }
-  .raised-amount-large {
-    font-size: 2.1rem;
-  }
-  .radial-progress-container {
-    width: 120px;
-    height: 120px;
-  }
-  .radial-progress-text .radial-percent {
-    font-size: 1.85rem;
-  }
-  .payment-benefits-sidebar, .payment-form-side {
-    padding: 1.25rem !important;
-  }
-  .form-actions-row {
-    flex-direction: column-reverse;
-    gap: 0.75rem;
-  }
-  .form-actions-row .btn {
-    width: 100%;
-  }
-}
 
 /* ==========================================================================
    New Premium Fundraiser Dashboard (Mockup Redesign)
@@ -2685,40 +2268,7 @@ nav ul li a:hover {
   background: var(--bg-paper);
 }
 
-@media (max-width: 900px) {
-  .payment-window-container {
-    flex-direction: column !important;
-    max-height: none !important;
-    overflow: visible !important;
-  }
-  .payment-benefits-sidebar {
-    max-height: 220px !important;
-    overflow-y: auto !important;
-    border-right: none !important;
-    border-bottom: 1px solid var(--border-color) !important;
-    padding: 1.5rem !important;
-    flex-shrink: 0 !important;
-  }
-  .payment-form-side {
-    max-height: none !important;
-    overflow-y: visible !important;
-    padding: 1.5rem !important;
-    flex-shrink: 0 !important;
-  }
-  #modal-invest-close {
-    top: 0.5rem !important;
-    right: 0.75rem !important;
-    background: var(--bg-paper) !important;
-    border-radius: 50% !important;
-    width: 32px !important;
-    height: 32px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-shadow: var(--shadow-sm) !important;
-    font-size: 1.5rem !important;
-  }
-}
+
 
 /* Tiers & Rewards Explorer Styles */
 .tick-label {
@@ -2782,6 +2332,460 @@ nav ul li a:hover {
   box-shadow: var(--shadow-md);
 }
 
+/* ==========================================================================
+   Responsive Styles (Media Queries sorted from desktop to mobile)
+   ========================================================================== */
+
+/* Tablet Landscape / Large Screens (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .grid-3, .team-layout-grid, .class-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .crm-metrics-dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .crm-visuals-row {
+    grid-template-columns: 1fr;
+  }
+  .fundraiser-top-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2rem;
+  }
+  .focus-details-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* Tablet Portrait / Medium Screens (max-width: 900px) */
+@media (max-width: 900px) {
+  .payment-window-container {
+    flex-direction: column !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .payment-benefits-sidebar {
+    max-height: 220px !important;
+    overflow-y: auto !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    padding: 1.5rem !important;
+    flex-shrink: 0 !important;
+  }
+  .payment-form-side {
+    max-height: none !important;
+    overflow-y: visible !important;
+    padding: 1.5rem !important;
+    flex-shrink: 0 !important;
+  }
+  #modal-invest-close {
+    top: 0.5rem !important;
+    right: 0.75rem !important;
+    background: var(--bg-paper) !important;
+    border-radius: 50% !important;
+    width: 32px !important;
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: var(--shadow-sm) !important;
+    font-size: 1.5rem !important;
+  }
+}
+
+/* Mobile Landscape / Small Screens (max-width: 768px) */
+@media (max-width: 768px) {
+  .logo-text {
+    display: none;
+  }
+  .pillars-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .showcase-features-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .property-card-interactive {
+    order: 1;
+  }
+  .space-detail-viewer {
+    order: 2;
+  }
+  .space-detail-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .space-photo-showcase {
+    order: 1;
+  }
+  .space-detail-text {
+    order: 2;
+  }
+  .modal-card-container {
+    padding: 1.5rem !important;
+  }
+  .modal-overlay-backdrop {
+    padding: 1rem;
+  }
+  .hero-carousel-container {
+    aspect-ratio: 4 / 3;
+    margin: 2rem auto 0.5rem auto;
+  }
+  .carousel-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 1.8rem;
+  }
+  .carousel-arrow.prev { left: 0.75rem; }
+  .carousel-arrow.next { right: 0.75rem; }
+
+  .container {
+    padding: 0 1.25rem;
+  }
+  .section-padding, .section-padding-beige {
+    padding: 3.5rem 0;
+  }
+  .card {
+    padding: 1.5rem !important; /* Limit card padding on mobile */
+    border-radius: var(--radius-md) !important;
+  }
+
+  /* Responsive Hero Text and Logo */
+  .hero {
+    padding: 8rem 0 4rem 0;
+  }
+  .hero-text-content h1 {
+    font-size: 2.2rem;
+    line-height: 1.25;
+  }
+  .hero-logo-img {
+    height: 90px !important;
+    margin: 1rem auto !important;
+  }
+  .hero-subheading {
+    font-size: 1.15rem !important;
+    line-height: 1.4 !important;
+    margin: 1.25rem 0 !important;
+  }
+  .hero-text-content .hero-intro {
+    font-size: 1.05rem;
+  }
+  .hero-text-content .hero-desc {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+  .hero-actions {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  /* Mobile Header Navigation Override */
+  nav ul {
+    display: flex !important;
+    gap: 0.5rem !important;
+  }
+  nav ul li:not(:nth-last-child(-n+2)) {
+    display: none !important; /* Hide other links, show CTA buttons */
+  }
+  nav ul li button {
+    padding: 0.45rem 0.85rem !important;
+    font-size: 0.75rem !important;
+    border-radius: var(--radius-sm) !important;
+  }  /* Fundraiser Panel Responsive styling */
+  .progress-panel {
+    padding: 1.25rem !important;
+  }
+  .raised-amount-large {
+    font-size: 2.2rem !important;
+  }
+  .fundraiser-top-section {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 1.25rem !important;
+  }
+  .radial-progress-container {
+    width: 90px !important;
+    height: 90px !important;
+    margin: 0 auto !important;
+  }
+  .radial-progress-text .radial-percent {
+    font-size: 1.6rem !important;
+  }
+  .radial-progress-text .radial-label {
+    font-size: 0.6rem !important;
+    margin-top: 0.1rem !important;
+  }
+  .fundraiser-main-stats {
+    width: 100% !important;
+    text-align: center !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+  }
+  .raised-value-title {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.25rem !important;
+    width: 100% !important;
+  }
+  .raised-goal-subtext {
+    font-size: 0.75rem !important;
+    text-align: center !important;
+  }
+  .sub-stats-grid {
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    gap: 0.5rem !important;
+  }
+  .sub-stat-item {
+    background: var(--bg-linen);
+    padding: 0.6rem 1rem !important;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
+  }
+  .sub-stat-icon {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 0.95rem !important;
+  }
+  .sub-stat-details {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+  }
+  .sub-stat-number {
+    font-size: 1rem !important;
+    font-weight: 800 !important;
+    color: var(--color-olive-deep) !important;
+  }
+  .sub-stat-label {
+    font-size: 0.7rem !important;
+    color: var(--text-grey) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.02em !important;
+  }
+  .callout-card-leaf {
+    width: 100% !important;
+    padding: 0.75rem 1rem !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+  }
+  .leaf-icon-wrapper {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 1rem !important;
+  }
+  .leaf-card-text {
+    font-size: 0.75rem !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+  .new-milestone-bar-container {
+    margin: 2rem 35px 3rem 35px !important;
+    overflow: visible !important;
+  }
+  .new-milestone-line {
+    display: block !important;
+    height: 16px !important;
+    top: 10px !important;
+  }
+  .new-milestones-list {
+    display: block !important;
+    height: 70px !important;
+    position: relative !important;
+  }
+  .new-milestone-node {
+    position: absolute !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    width: 40px !important;
+    transform: translateX(-50%) !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    top: 0 !important;
+  }
+  
+  #stage-node-0 { left: 20% !important; }
+  #stage-node-1 { left: 48% !important; }
+  #stage-node-2 { left: 72% !important; }
+  #stage-node-3 { left: 100% !important; }
+
+  .node-status-marker {
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 0.65rem !important;
+    border-width: 2px !important;
+  }
+  .new-milestone-node.active .node-status-marker::before {
+    width: 6px !important;
+    height: 6px !important;
+  }
+  .node-stage-icon {
+    display: none !important;
+  }
+  .node-stage-meta {
+    margin-top: 0.35rem !important;
+    align-items: center !important;
+    max-width: 40px !important;
+  }
+  .node-stage-number {
+    display: none !important;
+  }
+  .node-stage-title {
+    display: none !important;
+  }
+  .node-stage-val {
+    font-size: 0.65rem !important;
+    font-weight: 800 !important;
+    margin-top: 0.1rem !important;
+    color: var(--text-dark) !important;
+  }
+  .node-status-text {
+    display: none !important;
+  }
+
+  /* Grid Layouts Overrides */
+  h2 { font-size: 1.85rem; }
+  .grid-2, .showcase-features-grid, .calc-grid, .edu-splits-splitflow {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .grid-3, .team-layout-grid, .class-grid-container {
+    grid-template-columns: 1fr;
+  }
+  .calculator-panel {
+    padding: 1.75rem;
+  }
+  .progress-header-stats {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .newsletter-form-wrapper {
+    flex-direction: column;
+  }
+
+  /* Focus Details area margins */
+  .focus-image-box {
+    display: none !important;
+  }
+  .focus-details-wrapper {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  .focus-title {
+    font-size: 1.25rem !important;
+  }
+  .focus-description {
+    font-size: 0.85rem !important;
+    margin-bottom: 1rem !important;
+  }
+  .focus-stage-goal-card {
+    border-radius: var(--radius-md) !important;
+  }
+  .stage-goal-header {
+    padding: 0.75rem 1rem !important;
+    gap: 0.75rem !important;
+  }
+  .goal-header-icon {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 1.1rem !important;
+  }
+  .goal-header-value {
+    font-size: 1.1rem !important;
+  }
+  .stage-goal-body {
+    padding: 1rem !important;
+  }
+  .what-built-list {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 0.4rem !important;
+  }
+  .what-built-list li {
+    font-size: 0.72rem !important;
+    background: var(--bg-linen) !important;
+    padding: 0.25rem 0.5rem !important;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+  }
+  .stage-goal-footer {
+    padding: 0.75rem 1rem !important;
+  }
+
+  /* Tiers explorer card padding and responsive adjustments */
+  .tiers-explorer-card {
+    padding: 1.25rem !important;
+  }
+  .explorer-header {
+    margin-bottom: 1.5rem !important;
+  }
+  .explorer-header h3 {
+    font-size: 1.35rem !important;
+  }
+  .tiers-slider-wrapper {
+    margin: 1.5rem 0 !important;
+  }
+  .tier-info-card-left {
+    padding: 1.25rem !important;
+    gap: 1rem !important;
+  }
+  #explorer-tier-name {
+    font-size: 1.3rem !important;
+  }
+  #explorer-tier-amount {
+    font-size: 2rem !important;
+  }
+  #explorer-tier-description {
+    font-size: 0.85rem !important;
+  }
+  .tier-rewards-lists-right {
+    gap: 1rem !important;
+  }
+  .reward-category-card {
+    padding: 0.85rem 1rem !important;
+    gap: 0.75rem !important;
+  }
+  .reward-icon-box {
+    font-size: 1.25rem !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 8px !important;
+  }
+  .reward-category-card h5 {
+    font-size: 0.8rem !important;
+  }
+  .reward-category-card p {
+    font-size: 0.8rem !important;
+    margin-top: 0.15rem !important;
+  }
+
+  /* Modal split columns and paddings */
+  .payment-benefits-sidebar, .payment-form-side {
+    padding: 1.25rem !important;
+  }
+  .payment-window-container {
+    max-height: 95vh !important;
+    overflow-y: auto !important;
+  }
+}
+
 @media (max-width: 768px) {
   .tier-details-display-grid {
     grid-template-columns: 1fr !important;
@@ -2789,5 +2793,35 @@ nav ul li a:hover {
   }
   .slider-ticks-container {
     display: none !important; /* Hide labels to avoid overlaps on small screens */
+  }
+}
+
+/* Mobile Portrait / Extra Small Screens (max-width: 480px) */
+@media (max-width: 480px) {
+  .space-bullet-points {
+    grid-template-columns: 1fr;
+  }
+  .hero-text-content h1 {
+    font-size: 1.85rem;
+  }
+  .raised-amount-large {
+    font-size: 2.1rem;
+  }
+  .radial-progress-container {
+    width: 120px;
+    height: 120px;
+  }
+  .radial-progress-text .radial-percent {
+    font-size: 1.85rem;
+  }
+  .payment-benefits-sidebar, .payment-form-side {
+    padding: 1.25rem !important;
+  }
+  .form-actions-row {
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+  }
+  .form-actions-row .btn {
+    width: 100%;
   }
 }
