@@ -1821,12 +1821,17 @@ nav ul li a:hover {
   
   /* Milestones Timeline mobile stacking view */
   .new-milestones-list {
+    display: flex !important;
     flex-direction: column;
     gap: 2rem;
     align-items: flex-start;
+    height: auto !important;
   }
   .new-milestone-node {
-    width: 100%;
+    position: relative !important;
+    left: auto !important;
+    transform: none !important;
+    width: 100% !important;
     flex-direction: row;
     align-items: center;
     text-align: left;
@@ -2110,40 +2115,50 @@ nav ul li a:hover {
 .new-milestone-line {
   position: absolute;
   top: 15px;
-  left: 12.5%;
-  right: 12.5%;
-  height: 4px;
-  background: #e6e8e2;
+  left: 0;
+  right: 0;
+  height: 26px; /* Thick progress track! */
+  background: hsla(88, 56%, 20%, 0.06);
   transform: translateY(-50%);
   z-index: 1;
   border-radius: var(--radius-full);
+  overflow: hidden;
 }
 
 .new-milestone-line-fill {
   height: 100%;
   width: 0%;
-  background: var(--color-olive);
+  background: linear-gradient(90deg, var(--color-olive), var(--color-gold));
   border-radius: var(--radius-full);
   transition: width 1.2s cubic-bezier(0.1, 0.8, 0.25, 1);
+  box-shadow: 0 2px 5px rgba(90, 136, 38, 0.15);
 }
 
 .new-milestones-list {
   position: relative;
-  display: flex;
-  justify-content: space-between;
+  display: block; /* No longer flex-box on desktop */
+  height: 120px;
   z-index: 2;
   pointer-events: none;
 }
 
 .new-milestone-node {
+  position: absolute;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 25%;
+  width: 160px; /* Fixed width to center labels cleanly */
+  transform: translateX(-50%);
   cursor: pointer;
   pointer-events: auto;
 }
+
+#stage-node-0 { left: 20%; }
+#stage-node-1 { left: 48%; }
+#stage-node-2 { left: 72%; }
+#stage-node-3 { left: 100%; }
 
 .node-status-marker {
   width: 30px;

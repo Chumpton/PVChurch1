@@ -120,8 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const mainRaisedAmount = document.getElementById("main-raised-amount");
     if (mainRaisedAmount) mainRaisedAmount.textContent = formatRaisedLarge(totalRaised);
 
-    const horizontalFill = document.getElementById("horizontal-progress-fill");
-    if (horizontalFill) horizontalFill.style.width = `${percent}%`;
 
     const statsDonorsCount = document.getElementById("stats-donors-count");
     if (statsDonorsCount) statsDonorsCount.textContent = 335 + donors.length;
@@ -182,21 +180,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (lastNode) lastNode.classList.add("active");
     }
 
-    // Update milestone progress line fill
+    // Update milestone progress line fill to match overall raised percentage
     const milestoneFill = document.getElementById("new-milestone-line-fill");
-    let linePercent = 0;
-    if (activeStageIndex === 0) {
-      linePercent = (totalRaised / 500000) * 25; // Symmetrical mapping
-    } else if (activeStageIndex === 1) {
-      linePercent = 25 + ((totalRaised - 500000) / 700000) * 25;
-    } else if (activeStageIndex === 2) {
-      linePercent = 50 + ((totalRaised - 1200000) / 600000) * 25;
-    } else {
-      linePercent = 75 + ((totalRaised - 1800000) / 700000) * 25;
-    }
-    
-    linePercent = Math.min(100, Math.max(0, linePercent));
-    if (milestoneFill) milestoneFill.style.width = `${linePercent}%`;
+    if (milestoneFill) milestoneFill.style.width = `${percent}%`;
 
     // Populate active focus stage details
     updateFocusSection(activeStageIndex, totalRaised);
