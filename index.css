@@ -381,6 +381,15 @@ nav ul li a:hover {
   color: var(--text-grey);
 }
 
+.hero-subheading {
+  margin: 1.5rem 0 1.25rem 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-olive-deep);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
 .hero-actions {
   display: flex;
   justify-content: center;
@@ -1541,7 +1550,89 @@ nav ul li a:hover {
 }
 
 @media (max-width: 768px) {
-  h1 { font-size: 2.5rem; }
+  .container {
+    padding: 0 1.25rem;
+  }
+  .section-padding, .section-padding-beige {
+    padding: 3.5rem 0;
+  }
+  .card {
+    padding: 1.5rem !important; /* Limit card padding on mobile */
+    border-radius: var(--radius-md) !important;
+  }
+
+  /* Responsive Hero Text and Logo */
+  .hero {
+    padding: 8rem 0 4rem 0;
+  }
+  .hero-text-content h1 {
+    font-size: 2.2rem;
+    line-height: 1.25;
+  }
+  .hero-logo-img {
+    height: 90px !important;
+    margin: 1rem auto !important;
+  }
+  .hero-subheading {
+    font-size: 1.15rem !important;
+    line-height: 1.4 !important;
+    margin: 1.25rem 0 !important;
+  }
+  .hero-text-content .hero-intro {
+    font-size: 1.05rem;
+  }
+  .hero-text-content .hero-desc {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+  .hero-actions {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  /* Mobile Header Navigation Override */
+  nav ul {
+    display: flex !important;
+    gap: 0.5rem !important;
+  }
+  nav ul li:not(:nth-last-child(-n+2)) {
+    display: none !important; /* Hide other links, show CTA buttons */
+  }
+  nav ul li button {
+    padding: 0.45rem 0.85rem !important;
+    font-size: 0.75rem !important;
+    border-radius: var(--radius-sm) !important;
+  }
+
+  /* Fundraiser Panel Responsive styling */
+  .progress-panel {
+    padding: 1.5rem !important;
+  }
+  .raised-amount-large {
+    font-size: 2.5rem;
+  }
+  .sub-stats-grid {
+    grid-template-columns: 1fr; /* Stack stats visually */
+    gap: 0.75rem;
+  }
+  .sub-stat-item {
+    background: var(--bg-linen);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+  }
+  .callout-card-leaf {
+    width: 100%;
+  }
+  .new-milestone-bar-container {
+    margin: 2rem 0.5rem 2.5rem 0.5rem;
+  }
+
+  /* Grid Layouts Overrides */
   h2 { font-size: 1.85rem; }
   .grid-2, .showcase-features-grid, .calc-grid, .edu-splits-splitflow {
     grid-template-columns: 1fr;
@@ -1549,12 +1640,6 @@ nav ul li a:hover {
   }
   .grid-3, .team-layout-grid, .class-grid-container {
     grid-template-columns: 1fr;
-  }
-  nav ul {
-    display: none;
-  }
-  .section-padding, .section-padding-beige {
-    padding: 4.5rem 0;
   }
   .calculator-panel {
     padding: 1.75rem;
@@ -1566,6 +1651,8 @@ nav ul li a:hover {
   .newsletter-form-wrapper {
     flex-direction: column;
   }
+  
+  /* Milestones Timeline mobile stacking view */
   .new-milestones-list {
     flex-direction: column;
     gap: 2rem;
@@ -1587,6 +1674,52 @@ nav ul li a:hover {
   .node-stage-meta {
     margin-top: 0;
     align-items: flex-start;
+  }
+
+  /* Focus Details area margins */
+  .focus-image-box {
+    height: 200px;
+  }
+  .focus-title {
+    font-size: 1.35rem;
+  }
+  .focus-description {
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Modal split columns and paddings */
+  .payment-benefits-sidebar, .payment-form-side {
+    padding: 1.5rem !important;
+  }
+  .payment-window-container {
+    max-height: 95vh !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text-content h1 {
+    font-size: 1.85rem;
+  }
+  .raised-amount-large {
+    font-size: 2.1rem;
+  }
+  .radial-progress-container {
+    width: 120px;
+    height: 120px;
+  }
+  .radial-progress-text .radial-percent {
+    font-size: 1.85rem;
+  }
+  .payment-benefits-sidebar, .payment-form-side {
+    padding: 1.25rem !important;
+  }
+  .form-actions-row {
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+  }
+  .form-actions-row .btn {
+    width: 100%;
   }
 }
 
